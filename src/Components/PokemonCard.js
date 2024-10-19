@@ -1,13 +1,17 @@
 import { Link } from "react-router-dom";
 
-const PokemonCard = ({name}) => {
+import useFormat from "../Hooks/useFormat";
+
+const PokemonCard = ({ name }) => {
+    const { capitalize } = useFormat();
+
     return (
         <Link to={`/pokemon/${name}`}>
             <div className="p-5">
-                {name}
+                {capitalize(name)}
             </div>
         </Link>
     );
 }
- 
+
 export default PokemonCard;
