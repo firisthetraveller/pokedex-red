@@ -13,7 +13,7 @@ function App() {
     <div>
       <BrowserRouter basename='/pokedex-red'>
         <Navbar />
-        <div className='min-h-20' />
+        <div className='min-h-16' />
         <div>
           <Routes>
             <Route index element={<Navigate to="/home" replace />} />
