@@ -2,8 +2,11 @@ import { useEffect, useState } from "react";
 import useFormat from "../Hooks/useFormat";
 import StatInfo from "../Components/PokemonInfo/StatInfo";
 import TypeInfo from "../Components/PokemonInfo/TypeInfo";
+import { useParams } from "react-router-dom";
 
-const PokemonPage = ({ name }) => {
+const PokemonPage = () => {
+    const { name } = useParams();
+
     const [data, setData] = useState([]);
     const { capitalize, capitalizeAllString } = useFormat();
 
