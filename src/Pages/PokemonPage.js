@@ -18,11 +18,11 @@ const PokemonPage = () => {
                 <>
                     <p>#{data.id} {capitalizeAllString(data.name)}</p>
                     {data.sprites && <img src={data.sprites.front_default} alt={`Front of ${data.name}`} />}
-                    {data.types && data.types.map((t, i) => <TypeInfo name={t.type.name} />)}
+                    {data.types && data.types.map((t, i) => <TypeInfo key={i} name={t.type.name} />)}
 
                     {/** Abilities */}
-                    {data.abilities && data.abilities.map(a =>
-                        <p>{capitalize(a.ability.name)} {a.is_hidden && <span className="bg-gray-400 p-1 rounded">HIDDEN</span>}</p>
+                    {data.abilities && data.abilities.map((a, i) =>
+                        <p key={i}>{capitalizeAllString(a.ability.name)} {a.is_hidden && <span className="bg-gray-400 p-1 rounded">HIDDEN</span>}</p>
                     )}
                     {data.stats && data.stats.map((s, i) => <StatInfo key={i} base={s.base_stat} ev={s.effort} name={s.stat.name} />)}
                 </>
