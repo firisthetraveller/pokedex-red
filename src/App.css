@@ -1,38 +1,21 @@
-.App {
-  text-align: center;
+@font-face {
+  font-family: "Monocraft";
+  src: url("../public/assets/fonts/Monocraft.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@font-face {
+  font-family: "Monocraft";
+  src: url("../public/assets/fonts/Monocraft-Italic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+@font-face {
+  font-family: "Monocraft";
+  src: url("../public/assets/fonts/Monocraft-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
