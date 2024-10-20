@@ -6,12 +6,12 @@ const PokemonCard = ({ id, name }) => {
     const { capitalize } = useFormat();
 
     return (
-        <Link to={`/pokemon/${name}`}>
-            <div className="p-5">
+        <div className="p-5">
+            <Link to={`/pokemon/${name}`}>
                 <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`} />
-                #{i+1}{capitalize(name)}
-            </div>
-        </Link>
+                #{id} {capitalize(name)}
+            </Link>
+        </div>
     );
 }
 
