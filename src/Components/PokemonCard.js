@@ -10,7 +10,7 @@ const PokemonCard = ({ id, name }) => {
     return (
         <div className="p-5">
             <Link to={`/pokemon/${name}`}>
-                <img src={getImageFromName(name)} />
+                <img src={getImageFromName(name)} alt={`Sprite of ${name}`}/>
                 #{id} {capitalize(name)}
             </Link>
         </div>

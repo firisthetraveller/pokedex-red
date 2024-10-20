@@ -15,7 +15,7 @@ const EvolutionInfo = ({ data }) => {
         <>
             <div>
                 <Link to={`/pokemon/${data.species.name}`}>
-                    <img src={getImageFromName(data.species.name)} />
+                    <img src={getImageFromName(data.species.name)} alt={`Sprite of ${data.species.name}`} />
                     {capitalizeAllString(data.species.name)}
                     {data.evolution_details && data.evolution_details.map((d, i) =>
                         <p>
