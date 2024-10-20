@@ -17,6 +17,12 @@ const EvolutionInfo = ({ data }) => {
                 <Link to={`/pokemon/${data.species.name}`}>
                     <img src={getImageFromName(data.species.name)} />
                     {capitalizeAllString(data.species.name)}
+                    {data.evolution_details && data.evolution_details.map((d, i) =>
+                        <p>
+                            {d.min_level && <span>Evolves at Level {data.evolution_details[0].min_level}</span>}
+                            {d.min_happiness && <span>Evolves when happy</span>}
+                        </p>
+                    )}
                 </Link>
             </div>
             {data.evolves_to && data.evolves_to.map((info, i) =>
