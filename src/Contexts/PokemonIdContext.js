@@ -10,14 +10,14 @@ const getIdFromUrl = (urlString) => {
 
 export const PokemonIdProvider = ({children}) => {
     const {data, error} = useFetch('https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0');
-    const ids = data ? new Map(data.results.map(r => [Number(getIdFromUrl(r.url)), r.name])) : new Map([]);
+    const ids = data ? new Map(data.results.map(r => [r.name, Number(getIdFromUrl(r.url))])) : new Map([]);
 
-    const getImageUrl = (id) => {
-        return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
+    const getImageFromName = (name) => {
+        return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${ids.get(name)}.png`;
     }
 
     return (
-        <PokemonIdContext.Provider value={{...ids, getImageUrl}}>
+        <PokemonIdContext.Provider value={{...ids, getImageFromName}}>
             {children}
         </PokemonIdContext.Provider>
     )
