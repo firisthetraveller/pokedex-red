@@ -10,7 +10,7 @@ const EvolutionInfo = ({ data }) => {
     return (
         <>
             {data.evolution_details && data.evolution_details.map((d, i) =>
-                <div key={i}>
+                <div key={i} className="text-center">
                     <p>{`=>`}</p>
                     <p>
                         {d.min_level && <span>(Level {data.evolution_details[0].min_level})</span>}
