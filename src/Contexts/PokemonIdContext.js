@@ -16,8 +16,12 @@ export const PokemonIdProvider = ({children}) => {
         return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${ids.get(name)}.png`;
     }
 
+    const getId = (name) => {
+        return ids.get(name);
+    }
+
     return (
-        <PokemonIdContext.Provider value={{...ids, getImageFromName}}>
+        <PokemonIdContext.Provider value={{...ids, getImageFromName, getId}}>
             {!loading && children}
         </PokemonIdContext.Provider>
     )
