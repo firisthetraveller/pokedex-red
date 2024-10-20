@@ -562,16 +562,8 @@ video {
   display: flex;
 }
 
-.h-20 {
-  height: 5rem;
-}
-
 .h-16 {
   height: 4rem;
-}
-
-.min-h-20 {
-  min-height: 5rem;
 }
 
 .min-h-16 {
@@ -584,6 +576,14 @@ video {
 
 .flex-1 {
   flex: 1 1 0%;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.items-center {
+  align-items: center;
 }
 
 .rounded {
