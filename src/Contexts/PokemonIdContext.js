@@ -9,7 +9,7 @@ const getIdFromUrl = (urlString) => {
 } 
 
 export const PokemonIdProvider = ({children}) => {
-    const {data, error} = useFetch('https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0');
+    const {data, loading, error} = useFetch('https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0');
     const ids = data ? new Map(data.results.map(r => [r.name, Number(getIdFromUrl(r.url))])) : new Map([]);
 
     const getImageFromName = (name) => {
@@ -18,7 +18,7 @@ export const PokemonIdProvider = ({children}) => {
 
     return (
         <PokemonIdContext.Provider value={{...ids, getImageFromName}}>
-            {children}
+            {!loading && children}
         </PokemonIdContext.Provider>
     )
 }
