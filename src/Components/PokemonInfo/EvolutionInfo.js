@@ -7,27 +7,25 @@ const EvolutionInfo = ({ data }) => {
     const { getImageFromName } = usePokemonIds();
     const { capitalizeAllString } = useFormat();
 
-    console.log(getImageFromName(data.species.name));
-
-    console.log(data);
-
     return (
         <>
+            {data.evolution_details && data.evolution_details.map((d, i) =>
+                <div key={i}>
+                    <p>{`=>`}</p>
+                    <p>
+                        {d.min_level && <span>(Level {data.evolution_details[0].min_level})</span>}
+                        {d.min_happiness && <span>(Happy)</span>}
+                    </p>
+                </div>
+            )}
             <div>
                 <Link to={`/pokemon/${data.species.name}`}>
                     <img src={getImageFromName(data.species.name)} alt={`Sprite of ${data.species.name}`} />
                     {capitalizeAllString(data.species.name)}
-                    {data.evolution_details && data.evolution_details.map((d, i) =>
-                        <p>
-                            {d.min_level && <span>Evolves at Level {data.evolution_details[0].min_level}</span>}
-                            {d.min_happiness && <span>Evolves when happy</span>}
-                        </p>
-                    )}
                 </Link>
             </div>
             {data.evolves_to && data.evolves_to.map((info, i) =>
                 <React.Fragment key={i}>
-                    <span>{`=>`}</span>
                     <EvolutionInfo data={info} />
                 </React.Fragment>
             )}
