@@ -9,7 +9,6 @@ const romanNumerals = {
 }
 
 const getGenerationNumber = (name) => {
-    console.log(name);
     return romanNumerals[name.split('-')[1]]
 }
 
