@@ -33,7 +33,6 @@ const PokemonPage = () => {
                         {data.types.map((t, i) => <TypeInfo key={i} name={t.type.name} />)}
                     </SectionWrapper>}
 
-
                     {species.evolution_chain && <SectionWrapper name="Evolution">
                         <EvolutionLine url={species.evolution_chain.url} />
                     </SectionWrapper>}
@@ -47,7 +46,9 @@ const PokemonPage = () => {
                     </SectionWrapper>}
 
                     {data.moves && <SectionWrapper name="Moves">
-                        <MoveTable moves={data.moves} learnType="level-up" sort={(a, b) => a.level - b.level} startGen={species.generation.name}/>
+                        <SectionWrapper name="Learned moves by leveling up">
+                            <MoveTable moves={data.moves} learnType="level-up" sort={(a, b) => a.level - b.level} startGen={species.generation.name} />
+                        </SectionWrapper>
                     </SectionWrapper>}
                 </>
             }
