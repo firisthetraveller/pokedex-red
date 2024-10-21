@@ -25,21 +25,25 @@ const PokemonPage = () => {
                 <>
                     <Heading level={2}>#{data.id} {capitalizeAllString(data.name)}</Heading>
                     {species.genera && species.genera.filter(g => g.language.name === 'en').map((g, i) => <Heading level={3} key={i} className="text-gray-600">{g.genus}</Heading>)}
-                    {data.sprites && <img src={getOfficialArtworkFromName(name)} alt={`Front of ${data.name}`} className="max-w-64"/>}
-                    {data.types && data.types.map((t, i) => <TypeInfo key={i} name={t.type.name} />)}
+                    {data.sprites && <img src={getOfficialArtworkFromName(name)} alt={`Front of ${data.name}`} className="max-w-64" />}
 
-                    {species.evolution_chain && <EvolutionLine url={species.evolution_chain.url} />}
 
-                    {/** Abilities */}
-                    <SectionWrapper name="Abilities">
-                        {data.abilities && data.abilities.map((a, i) =>
-                            <AbilityInfo key={i} name={a.ability.name} hidden={a.is_hidden} />
-                        )}
-                    </SectionWrapper>
+                    {data.types && <SectionWrapper name={`Type${data.types.length > 1 ? 's' : ''}`}>
+                        {data.types.map((t, i) => <TypeInfo key={i} name={t.type.name} />)}
+                    </SectionWrapper>}
 
-                    <SectionWrapper name="Base stats">
-                        {data.stats && data.stats.map((s, i) => <StatInfo key={i} base={s.base_stat} ev={s.effort} name={s.stat.name} />)}
-                    </SectionWrapper>
+
+                    {species.evolution_chain && <SectionWrapper name="Evolution">
+                        <EvolutionLine url={species.evolution_chain.url} />
+                    </SectionWrapper>}
+
+                    {data.abilities && <SectionWrapper name="Abilities">
+                        {data.abilities.map((a, i) => <AbilityInfo key={i} name={a.ability.name} hidden={a.is_hidden} />)}
+                    </SectionWrapper>}
+
+                    {data.stats && <SectionWrapper name="Base stats">
+                        {data.stats.map((s, i) => <StatInfo key={i} base={s.base_stat} ev={s.effort} name={s.stat.name} />)}
+                    </SectionWrapper>}
                 </>
             }
             {error_data && <p>{error_data}</p>}
