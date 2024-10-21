@@ -29,7 +29,11 @@ const EvolutionInfo = ({ data }) => {
                                             <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${d.item.name}.png`} alt={`Sprite for ${capitalizeAllString(d.item.name)}`} />
                                             <p>{capitalizeAllString(d.item.name)}</p>
                                         </>}
-                                        {d.trigger.name === "trade" && <p>Trade</p>}
+                                        {d.trigger.name === "trade" &&
+                                            <>
+                                                {d.held_item && <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${d.held_item.name}.png`} alt={`Sprite for ${capitalizeAllString(d.held_item.name)}`} />}
+                                                <p>Trade{d.held_item && <span> with {capitalizeAllString(d.held_item.name)}</span>}</p>
+                                            </>}
                                         {d.location && <>
                                             <span>Level up at {capitalizeAllString(d.location.name)}</span>
                                         </>}
