@@ -1,4 +1,17 @@
-const exceptions = new Map([['nidoran-m', 'Nidoran ♂'], ['nidoran-f', 'Nidoran ♀'], ['xd', 'XD']]);
+const exceptions = new Map([
+    ['nidoran-m', 'Nidoran ♂'],
+    ['nidoran-f', 'Nidoran ♀'],
+    ['xd', 'XD'],
+    ['ho-oh', 'Ho-oh'],
+    ['porygon-z', 'Porygon-Z'],
+    ['jangmo-o', 'Jangmo-o'],
+    ['hakamo-o', 'Hakamo-o'],
+    ['kommo-o', 'Kommo-o'],
+    ['wo-chien', 'Wo-Chien'],
+    ['chien-pao', 'Chien-Pao'],
+    ['ting-lu', 'Ting-Lu'],
+    ['chi-yu', 'Chi-Yu']
+]);
 
 const capitalize = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);;
