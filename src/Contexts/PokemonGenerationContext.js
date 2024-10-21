@@ -44,12 +44,8 @@ export const PokemonGenerationProvider = ({ children }) => {
         return games.flat();
     }, [data]);
 
-    const printAll = () => {
-        console.log(data);
-    }
-
     return (
-        <PokemonGenerationContext.Provider value={{ ...data, printAll, getAllNextGenerations }}>
+        <PokemonGenerationContext.Provider value={{ ...data, getAllNextGenerations }}>
             {children}
             {errors && errors.map(e => <p>{e}</p>)}
         </PokemonGenerationContext.Provider>

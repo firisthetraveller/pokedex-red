@@ -10,16 +10,13 @@ const exceptions = [
 
 const getIdFromUrl = (urlString) => {
     return urlString.split('/').at(-2);
-} 
+}
 
-export const PokemonIdProvider = ({children}) => {
-    const {data, loading, error} = useFetch('https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0');
+export const PokemonIdProvider = ({ children }) => {
+    const { data, loading, error } = useFetch('https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0');
     const ids = data ? new Map([...exceptions, ...data.results.map(r => [r.name, Number(getIdFromUrl(r.url))])]) : new Map(exceptions);
 
-    console.log(ids);
-
     const getImageFromName = (name) => {
-        console.log(name, ids.get(name));
         return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${ids.get(name)}.png`;
     }
 
@@ -32,8 +29,11 @@ export const PokemonIdProvider = ({children}) => {
     }
 
     return (
-        <PokemonIdContext.Provider value={{...ids, getImageFromName, getId, getOfficialArtworkFromName}}>
-            {!loading && children}
-        </PokemonIdContext.Provider>
+        <>
+            <PokemonIdContext.Provider value={{ ...ids, getImageFromName, getId, getOfficialArtworkFromName }}>
+                {!loading && children}
+            </PokemonIdContext.Provider>
+            {error && <p>{error}</p>}
+        </>
     )
 }
