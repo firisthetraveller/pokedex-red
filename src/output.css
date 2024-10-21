@@ -594,10 +594,6 @@ video {
   align-items: center;
 }
 
-.justify-center {
-  justify-content: center;
-}
-
 .rounded {
   border-radius: 0.25rem;
 }
@@ -698,10 +694,6 @@ video {
 
 .p-5 {
   padding: 1.25rem;
-}
-
-.pr-2 {
-  padding-right: 0.5rem;
 }
 
 .pr-1\.5 {
