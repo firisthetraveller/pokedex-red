@@ -10,6 +10,7 @@ import EvolutionLine from "../Components/PokemonInfo/EvolutionLine";
 import SectionWrapper from "../Components/PokemonInfo/SectionWrapper";
 import Heading from "../Components/Base/Heading";
 import AbilityInfo from "../Components/PokemonInfo/AbilityInfo";
+import MoveTable from "../Components/PokemonInfo/MoveTable";
 
 const PokemonPage = () => {
     const { name } = useParams();
@@ -43,6 +44,10 @@ const PokemonPage = () => {
 
                     {data.stats && <SectionWrapper name="Base stats">
                         {data.stats.map((s, i) => <StatInfo key={i} base={s.base_stat} ev={s.effort} name={s.stat.name} />)}
+                    </SectionWrapper>}
+
+                    {data.moves && <SectionWrapper name="Moves">
+                        <MoveTable moves={data.moves} learnType="level-up" startGen={species.generation.name}/>
                     </SectionWrapper>}
                 </>
             }
