@@ -4,15 +4,22 @@ import useFetch from "../Hooks/useFetch";
 
 export const PokemonIdContext = createContext(null);
 
+const exceptions = [
+    ['dudunsparce', 982]
+]
+
 const getIdFromUrl = (urlString) => {
     return urlString.split('/').at(-2);
 } 
 
 export const PokemonIdProvider = ({children}) => {
     const {data, loading, error} = useFetch('https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0');
-    const ids = data ? new Map(data.results.map(r => [r.name, Number(getIdFromUrl(r.url))])) : new Map([]);
+    const ids = data ? new Map([...exceptions, ...data.results.map(r => [r.name, Number(getIdFromUrl(r.url))])]) : new Map(exceptions);
+
+    console.log(ids);
 
     const getImageFromName = (name) => {
+        console.log(name, ids.get(name));
         return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${ids.get(name)}.png`;
     }
 
