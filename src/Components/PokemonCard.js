@@ -8,10 +8,10 @@ const PokemonCard = ({ id, name }) => {
     const { getImageFromName } = usePokemonIds();
 
     return (
-        <div className="p-5">
+        <div className="p-5 flex-1">
             <Link to={`/pokemon/${name}`}>
                 <img src={getImageFromName(name)} alt={`Sprite of ${name}`}/>
-                #{id} {capitalize(name)}
+                <span className="font-normal">#{id} {capitalize(name)}</span>
             </Link>
         </div>
     );
