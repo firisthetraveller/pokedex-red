@@ -13,14 +13,17 @@ const useFetch = (url) => {
 
     useEffect(() => {
         setStatus("", "", true);
-        fetch(url)
-            .then((response) => response.json())
-            .then((d) => {
-                setStatus(d, "", false);
-            })
-            .catch((err) => {
-                setStatus("", err.message, false);
-            });
+
+        if (url) {
+            fetch(url)
+                .then((response) => response.json())
+                .then((d) => {
+                    setStatus(d, "", false);
+                })
+                .catch((err) => {
+                    setStatus("", err.message, false);
+                });
+        }
     }, [url]);
 
     return { data, error, loading };
