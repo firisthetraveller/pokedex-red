@@ -10,7 +10,6 @@ import EvolutionLine from "../Components/PokemonInfo/EvolutionLine";
 import SectionWrapper from "../Components/PokemonInfo/SectionWrapper";
 import Heading from "../Components/Base/Heading";
 import AbilityInfo from "../Components/PokemonInfo/AbilityInfo";
-import MoveTable from "../Components/PokemonInfo/MoveTable";
 import MoveTables from "../Components/PokemonInfo/MoveTables";
 
 const PokemonPage = () => {
