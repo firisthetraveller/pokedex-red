@@ -4,14 +4,14 @@ import useFormat from "../Hooks/useFormat";
 import usePokemonIds from "../Hooks/usePokemonIds";
 
 const PokemonCard = ({ id, name }) => {
-    const { capitalize } = useFormat();
+    const { capitalizeAllString } = useFormat();
     const { getImageFromName } = usePokemonIds();
 
     return (
-        <div className="p-5 flex-1">
+        <div className="m-5 flex-1">
             <Link to={`/pokemon/${name}`}>
                 <img src={getImageFromName(name)} alt={`Sprite of ${name}`}/>
-                <span className="font-normal">#{id} {capitalize(name)}</span>
+                <span className="font-normal">#{id} {capitalizeAllString(name)}</span>
             </Link>
         </div>
     );
