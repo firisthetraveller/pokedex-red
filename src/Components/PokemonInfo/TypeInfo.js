@@ -29,7 +29,7 @@ const getTypeColorStyle = (name) => {
 const TypeInfo = ({ name }) => {
     const { capitalize } = useFormat();
 
-    return <span className={`${commonStyle} ${getTypeColorStyle(name)}`}>{capitalize(name)}</span>
+    return <span className={`${commonStyle} ${getTypeColorStyle(name)} font-semibold`}>{capitalize(name)}</span>
 }
 
 export default TypeInfo;
