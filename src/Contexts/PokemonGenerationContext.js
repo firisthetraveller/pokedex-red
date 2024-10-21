@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useCallback, useEffect, useState } from "react";
 
 export const PokemonGenerationContext = createContext(null);
 
@@ -22,7 +22,7 @@ export const PokemonGenerationProvider = ({ children }) => {
             .then((d) => {
                 d.results.forEach(r => {
                     fetch(r.url).then((response) => response.json())
-                        .then(d => setData(m => m.set(getGenerationNumber(d.generation.name), m.get(getGenerationNumber(d.generation.name)) ? m.get(getGenerationNumber(d.generation.name)).add(r.name) : new Set([r.name]))))
+                        .then(d => setData(m => new Map(m.set(getGenerationNumber(d.generation.name), m.get(getGenerationNumber(d.generation.name)) ? m.get(getGenerationNumber(d.generation.name)).add(r.name) : new Set([r.name])))))
                         .catch(err => setErrors(e => [...e, err.message]));
                 });
             })
@@ -32,7 +32,7 @@ export const PokemonGenerationProvider = ({ children }) => {
             });
     }, []);
 
-    const getAllNextGenerations = (start) => {
+    const getAllNextGenerations = useCallback((start) => {
         const games = [];
 
         data.forEach((v, k) => {
@@ -42,7 +42,7 @@ export const PokemonGenerationProvider = ({ children }) => {
         });
 
         return games.flat();
-    }
+    }, [data]);
 
     const printAll = () => {
         console.log(data);
