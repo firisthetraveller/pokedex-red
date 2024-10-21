@@ -11,6 +11,7 @@ import SectionWrapper from "../Components/PokemonInfo/SectionWrapper";
 import Heading from "../Components/Base/Heading";
 import AbilityInfo from "../Components/PokemonInfo/AbilityInfo";
 import MoveTable from "../Components/PokemonInfo/MoveTable";
+import MoveTables from "../Components/PokemonInfo/MoveTables";
 
 const PokemonPage = () => {
     const { name } = useParams();
@@ -46,9 +47,7 @@ const PokemonPage = () => {
                     </SectionWrapper>}
 
                     {data.moves && <SectionWrapper name="Moves">
-                        <SectionWrapper name="Learned moves by leveling up">
-                            <MoveTable moves={data.moves} learnType="level-up" sort={(a, b) => a.level - b.level} startGen={species.generation.name} />
-                        </SectionWrapper>
+                        <MoveTables moves={data.moves} genName={species.generation.name}/>
                     </SectionWrapper>}
                 </>
             }
