@@ -34,10 +34,10 @@ const EvolutionInfo = ({ data }) => {
                     )}
                 </div>
             }
-            <div>
+            <div className="text-center">
                 <Link to={`/pokemon/${data.species.name}`}>
                     <img src={getImageFromName(data.species.name)} alt={`Sprite of ${data.species.name}`} />
-                    {capitalizeAllString(data.species.name)}
+                    <span className="font-normal">{capitalizeAllString(data.species.name)}</span>
                 </Link>
             </div>
             {data.evolves_to && data.evolves_to.length === 1 && data.evolves_to.map((info, i) =>
