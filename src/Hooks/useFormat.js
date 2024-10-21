@@ -13,6 +13,15 @@ const capitalizeAllString = (str) => {
     return undefined;
 }
 
+const shorthandString = (str) => {
+    if (str) {
+        if (exceptions.get(str))
+            return exceptions.get(str);
+        return str.split("-").map(s => capitalize(s).slice(0, 1)).join("");
+    }
+    return undefined;
+}
+
 export default function useFormat() {
-    return { capitalize, capitalizeAllString };
+    return { capitalize, capitalizeAllString, shorthandString };
 }
