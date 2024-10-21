@@ -8,27 +8,22 @@ import TypeInfo from "../Components/PokemonInfo/TypeInfo";
 import EvolutionLine from "../Components/PokemonInfo/EvolutionLine";
 import usePokemonIds from "../Hooks/usePokemonIds";
 import SectionWrapper from "../Components/PokemonInfo/SectionWrapper";
+import Heading from "../Components/Base/Heading";
 
 const PokemonPage = () => {
     const { name } = useParams();
     const { getId } = usePokemonIds();
 
-    console.log("Species URL", `https://pokeapi.co/api/v2/pokemon-species/${getId(name)}`);
-
     const { data, error: error_data } = useFetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
     const { data: species, error: error_species } = useFetch(`https://pokeapi.co/api/v2/pokemon-species/${getId(name)}`);
     const { capitalizeAllString } = useFormat();
-
-    console.log("Data", data);
-    console.log("Species", species);
-    console.log("Evolution chain URL", species ? species.evolution_chain.url : undefined);
 
     return (
         <div className="top-20">
             {data && species &&
                 <>
-                    <p>#{data.id} {capitalizeAllString(data.name)}</p>
-                    {species.genera && species.genera.filter(g => g.language.name === 'en').map((g, i) => <p key={i}>{g.genus}</p>)}
+                    <Heading level={2}>#{data.id} {capitalizeAllString(data.name)}</Heading>
+                    {species.genera && species.genera.filter(g => g.language.name === 'en').map((g, i) => <Heading level={3} key={i} className="text-gray-600">{g.genus}</Heading>)}
                     {data.sprites && <img src={data.sprites.front_default} alt={`Front of ${data.name}`} />}
                     {data.types && data.types.map((t, i) => <TypeInfo key={i} name={t.type.name} />)}
 
@@ -36,9 +31,9 @@ const PokemonPage = () => {
 
                     {/** Abilities */}
                     <SectionWrapper name="Abilities">
-                    {data.abilities && data.abilities.map((a, i) =>
-                        <p key={i}>{capitalizeAllString(a.ability.name)} {a.is_hidden && <span className="bg-gray-400 p-1 rounded">Hidden</span>}</p>
-                    )}
+                        {data.abilities && data.abilities.map((a, i) =>
+                            <p key={i}>{capitalizeAllString(a.ability.name)} {a.is_hidden && <span className="bg-gray-400 p-1 rounded">Hidden</span>}</p>
+                        )}
                     </SectionWrapper>
 
                     <SectionWrapper name="Base stats">
