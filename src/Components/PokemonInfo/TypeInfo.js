@@ -2,30 +2,34 @@ import useFormat from "../../Hooks/useFormat";
 
 const commonStyle = "rounded p-1 pr-1.5 text-white type-shadow mx-1";
 
+const getTypeColorStyle = (name) => {
+    switch (name) {
+        case "normal": return "bg-gray-300";
+        case "red": return "bg-red-600 shadow-gray-700"
+        case "fire": return "bg-orange-500"
+        case "water": return "bg-sky-500";
+        case "grass": return "bg-green-500";
+        case "dragon": return "bg-purple-700";
+        case "poison": return "bg-fuchsia-600";
+        case "ground": return "bg-amber-500";
+        case "flying": return "bg-indigo-400";
+        case "ice": return "bg-blue-300";
+        case "rock": return "bg-amber-800";
+        case "bug": return "bg-lime-500";
+        case "psychic": return "bg-pink-500";
+        case "dark": return "bg-gray-800";
+        case "steel": return "bg-gray-400";
+        case "ghost": return "bg-slate-700";
+        case "electric": return "bg-yellow-500";
+        case "fairy": return "bg-pink-300";
+        default: throw new Error(`Type not implemented yet: ${name}`);
+    }
+}
+ 
 const TypeInfo = ({ name }) => {
     const { capitalize } = useFormat();
 
-    switch (name) {
-        case "normal": return <span className={`${commonStyle} bg-gray-300`}>{capitalize(name)}</span>
-        case "red": return <span className={`${commonStyle} bg-red-600 shadow-gray-700`}>{capitalize(name)}</span>
-        case "fire": return <span className={`${commonStyle} bg-orange-500`}>{capitalize(name)}</span>
-        case "water": return <span className={`${commonStyle} bg-sky-500`}>{capitalize(name)}</span>
-        case "grass": return <span className={`${commonStyle} bg-green-500`}>{capitalize(name)}</span>
-        case "dragon": return <span className={`${commonStyle} bg-purple-700`}>{capitalize(name)}</span>
-        case "poison": return <span className={`${commonStyle} bg-fuchsia-600`}>{capitalize(name)}</span>
-        case "ground": return <span className={`${commonStyle} bg-amber-500`}>{capitalize(name)}</span>
-        case "flying": return <span className={`${commonStyle} bg-indigo-400`}>{capitalize(name)}</span>
-        case "ice": return <span className={`${commonStyle} bg-blue-300`}>{capitalize(name)}</span>
-        case "rock": return <span className={`${commonStyle} bg-amber-800`}>{capitalize(name)}</span>
-        case "bug": return <span className={`${commonStyle} bg-lime-500`}>{capitalize(name)}</span>
-        case "psychic": return <span className={`${commonStyle} bg-pink-500`}>{capitalize(name)}</span>
-        case "dark": return <span className={`${commonStyle} bg-gray-800`}>{capitalize(name)}</span>
-        case "steel": return <span className={`${commonStyle} bg-gray-400`}>{capitalize(name)}</span>
-        case "ghost": return <span className={`${commonStyle} bg-slate-700`}>{capitalize(name)}</span>
-        case "electric": return <span className={`${commonStyle} bg-yellow-500`}>{capitalize(name)}</span>
-        case "fairy": return <span className={`${commonStyle} bg-pink-300`}>{capitalize(name)}</span>
-        default: throw new Error(`Type not implemented yet: ${name}`);
-    }
+    return <span className={`${commonStyle} ${getTypeColorStyle(name)}`}>{capitalize(name)}</span>
 }
 
 export default TypeInfo;
