@@ -5,7 +5,7 @@ const commonStyle = "rounded p-1 pr-1.5 text-white type-shadow mx-1";
 const getTypeColorStyle = (name) => {
     switch (name) {
         case "normal": return "bg-gray-300";
-        case "red": return "bg-red-600 shadow-gray-700"
+        case "fighting": return "bg-red-600 shadow-gray-700";
         case "fire": return "bg-orange-500"
         case "water": return "bg-sky-500";
         case "grass": return "bg-green-500";
