@@ -19,11 +19,19 @@ const Home = () => {
 
     return (
         <>
-            {data && <div className="flex items-center flex-wrap">
-                {data.previous && <Link to={`/home/${Math.max(offset - limit, 0)}/${limit}`} ><FontAwesomeIcon icon={faArrowLeft} /></Link>}
-                {data.results && data.results.map((r, i) => <PokemonCard key={i} id={getId(r.name)} name={r.name} />)}
-                {data.next && <Link to={`/home/${offset + limit}/${limit}`}><FontAwesomeIcon icon={faArrowRight} /></Link>}
-            </div>}
+            {data &&
+                <div className="flex items-center">
+                    {data.previous
+                        ? <Link to={`/home/${Math.max(offset - limit, 0)}/${limit}`} className="text-center w-1/12"><FontAwesomeIcon icon={faArrowLeft} /></Link>
+                        : <div className="w-1/12" />}
+                    <div className="flex items-center flex-wrap w-9/12">
+                        {data.results && data.results.map((r, i) => <PokemonCard key={i} id={getId(r.name)} name={r.name} />)}
+                    </div>
+                    {data.next
+                        ? <Link to={`/home/${offset + limit}/${limit}`} className="text-center w-1/12"><FontAwesomeIcon icon={faArrowRight} /></Link>
+                        : <div className="w-1/12" />}
+                </div>
+            }
             {error && <p>{error}</p>}
         </>
     );
