@@ -1,6 +1,6 @@
 import useFormat from "../../Hooks/useFormat";
 
-const commonStyle = "rounded p-1 pr-2 text-white type-shadow mx-1";
+const commonStyle = "rounded p-1 pr-1.5 text-white type-shadow mx-1";
 
 const TypeInfo = ({ name }) => {
     const { capitalize } = useFormat();
