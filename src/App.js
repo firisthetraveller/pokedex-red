@@ -11,7 +11,7 @@ import { PokemonIdProvider } from './Contexts/PokemonIdContext';
 
 function App() {
   return (
-    <div>
+    <>
       <PokemonIdProvider>
         <BrowserRouter basename='/pokedex-red'>
           <Navbar />
@@ -26,7 +26,7 @@ function App() {
           </div>
         </BrowserRouter>
       </PokemonIdProvider>
-    </div>
+    </>
   );
 }
 
