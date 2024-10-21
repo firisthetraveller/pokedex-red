@@ -18,7 +18,7 @@ const TypeInfo = ({ name }) => {
         case "ice": return <span className={`${commonStyle} bg-blue-300`}>{capitalize(name)}</span>
         case "rock": return <span className={`${commonStyle} bg-amber-800`}>{capitalize(name)}</span>
         case "bug": return <span className={`${commonStyle} bg-lime-500`}>{capitalize(name)}</span>
-        case "psy": return <span className={`${commonStyle} bg-pink-500`}>{capitalize(name)}</span>
+        case "psychic": return <span className={`${commonStyle} bg-pink-500`}>{capitalize(name)}</span>
         case "dark": return <span className={`${commonStyle} bg-gray-800`}>{capitalize(name)}</span>
         case "steel": return <span className={`${commonStyle} bg-gray-400`}>{capitalize(name)}</span>
         case "ghost": return <span className={`${commonStyle} bg-slate-700`}>{capitalize(name)}</span>
