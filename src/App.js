@@ -18,10 +18,10 @@ function App() {
           <div className='min-h-16' />
           <div>
             <Routes>
-              <Route index element={<Navigate to="/home" replace />} />
-              <Route path="home" element={<Home />} />
+              <Route index element={<Navigate to="/home/0/20" replace />} />
+              <Route path="home/:offset/:limit" element={<Home />} />
               <Route path="pokemon/:name" element={<PokemonPage />} />
-              <Route path="*" element={<Navigate to="/home" />} />
+              <Route path="*" element={<Navigate to="/home/0/20" />} />
             </Routes>
           </div>
         </BrowserRouter>
