@@ -24,7 +24,7 @@ const Home = () => {
                     {data.previous
                         ? <Link to={`/home/${Math.max(offset - limit, 0)}/${limit}`} className="text-center flex-1"><FontAwesomeIcon icon={faArrowLeft} /></Link>
                         : <div className="flex-1" />}
-                    <div className="flex items-center flex-wrap flex-8">
+                    <div className="flex justify-center flex-wrap flex-8">
                         {data.results && data.results.map((r, i) => <PokemonCard key={i} id={getId(r.name)} name={r.name} />)}
                     </div>
                     {data.next
