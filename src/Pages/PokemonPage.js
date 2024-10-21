@@ -47,7 +47,7 @@ const PokemonPage = () => {
                     </SectionWrapper>}
 
                     {data.moves && <SectionWrapper name="Moves">
-                        <MoveTable moves={data.moves} learnType="level-up" startGen={species.generation.name}/>
+                        <MoveTable moves={data.moves} learnType="level-up" sort={(a, b) => a.level - b.level} startGen={species.generation.name}/>
                     </SectionWrapper>}
                 </>
             }

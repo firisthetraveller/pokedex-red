@@ -5,7 +5,7 @@ import { usePokemonGenerations } from "../../Hooks/usePokemonData";
 
 import MoveInfo from "./MoveInfo";
 
-const MoveTable = ({ moves, learnType, startGen }) => {
+const MoveTable = ({ moves, learnType, startGen, sort }) => {
     const [selectedVersion, setSelectedVersion] = useState("red-blue");
     const { capitalizeAllString } = useFormat();
     const { getAllNextGenerations } = usePokemonGenerations();
@@ -35,7 +35,7 @@ const MoveTable = ({ moves, learnType, startGen }) => {
                                         name: m.move.name,
                                         level: m.version_group_details.filter(v => v.version_group.name === selectedVersion)[0].level_learned_at}
                                     })
-                                .sort((a, b) => a.level - b.level)
+                                .sort(sort)
                                 .map((m, i) =>
                                     <MoveInfo key={i}
                                         level={m.level}
