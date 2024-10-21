@@ -40,3 +40,7 @@ body {
 .flex-8 {
   flex: 8 1 0%;
 }
+
+.flex-3 {
+  flex: 3 1 0%;
+}
