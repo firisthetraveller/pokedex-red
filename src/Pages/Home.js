@@ -22,14 +22,14 @@ const Home = () => {
             {data &&
                 <div className="flex items-center">
                     {data.previous
-                        ? <Link to={`/home/${Math.max(offset - limit, 0)}/${limit}`} className="text-center w-1/12"><FontAwesomeIcon icon={faArrowLeft} /></Link>
-                        : <div className="w-1/12" />}
-                    <div className="flex items-center flex-wrap w-9/12">
+                        ? <Link to={`/home/${Math.max(offset - limit, 0)}/${limit}`} className="text-center flex-1"><FontAwesomeIcon icon={faArrowLeft} /></Link>
+                        : <div className="flex-1" />}
+                    <div className="flex items-center flex-wrap flex-8">
                         {data.results && data.results.map((r, i) => <PokemonCard key={i} id={getId(r.name)} name={r.name} />)}
                     </div>
                     {data.next
-                        ? <Link to={`/home/${offset + limit}/${limit}`} className="text-center w-1/12"><FontAwesomeIcon icon={faArrowRight} /></Link>
-                        : <div className="w-1/12" />}
+                        ? <Link to={`/home/${offset + limit}/${limit}`} className="text-center flex-1"><FontAwesomeIcon icon={faArrowRight} /></Link>
+                        : <div className="flex-1" />}
                 </div>
             }
             {error && <p>{error}</p>}
