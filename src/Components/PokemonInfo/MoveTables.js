@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { usePokemonGenerations } from "../../Hooks/usePokemonData";
 import useFormat from "../../Hooks/useFormat";
@@ -12,6 +12,10 @@ const MoveTables = ({ moves, genName }) => {
     const { capitalizeAllString } = useFormat();
 
     const versions = getAllNextGenerations(genName);
+
+    useEffect(() => {
+        setSelectedVersion(v => (versions && !versions.includes(v)) ? versions[0] : v);
+    }, [versions]);
 
     return (
         <>
