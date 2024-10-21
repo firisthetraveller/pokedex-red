@@ -9,6 +9,7 @@ import EvolutionLine from "../Components/PokemonInfo/EvolutionLine";
 import usePokemonIds from "../Hooks/usePokemonIds";
 import SectionWrapper from "../Components/PokemonInfo/SectionWrapper";
 import Heading from "../Components/Base/Heading";
+import AbilityInfo from "../Components/PokemonInfo/AbilityInfo";
 
 const PokemonPage = () => {
     const { name } = useParams();
@@ -32,7 +33,7 @@ const PokemonPage = () => {
                     {/** Abilities */}
                     <SectionWrapper name="Abilities">
                         {data.abilities && data.abilities.map((a, i) =>
-                            <p key={i}>{capitalizeAllString(a.ability.name)} {a.is_hidden && <span className="bg-gray-400 p-1 rounded">Hidden</span>}</p>
+                            <AbilityInfo key={i} name={a.ability.name} hidden={a.is_hidden} />
                         )}
                     </SectionWrapper>
 
