@@ -2,8 +2,8 @@ import React from "react";
 
 import { Link } from "react-router-dom";
 
-import usePokemonIds from "../../Hooks/usePokemonIds";
 import useFormat from "../../Hooks/useFormat";
+import { usePokemonIds } from "../../Hooks/usePokemonData";
 
 import TypeInfo from "./TypeInfo";
 

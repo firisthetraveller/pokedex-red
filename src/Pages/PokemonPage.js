@@ -2,11 +2,11 @@ import { useParams } from "react-router-dom";
 
 import useFormat from "../Hooks/useFormat";
 import useFetch from "../Hooks/useFetch";
+import { usePokemonIds } from "../Hooks/usePokemonData";
 
 import StatInfo from "../Components/PokemonInfo/StatInfo";
 import TypeInfo from "../Components/PokemonInfo/TypeInfo";
 import EvolutionLine from "../Components/PokemonInfo/EvolutionLine";
-import usePokemonIds from "../Hooks/usePokemonIds";
 import SectionWrapper from "../Components/PokemonInfo/SectionWrapper";
 import Heading from "../Components/Base/Heading";
 import AbilityInfo from "../Components/PokemonInfo/AbilityInfo";
