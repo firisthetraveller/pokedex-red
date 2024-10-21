@@ -13,19 +13,19 @@ import AbilityInfo from "../Components/PokemonInfo/AbilityInfo";
 
 const PokemonPage = () => {
     const { name } = useParams();
-    const { getId } = usePokemonIds();
+    const { getId, getOfficialArtworkFromName } = usePokemonIds();
 
     const { data, error: error_data } = useFetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
     const { data: species, error: error_species } = useFetch(getId(name) ? `https://pokeapi.co/api/v2/pokemon-species/${getId(name)}` : "");
     const { capitalizeAllString } = useFormat();
 
     return (
-        <div className="top-20">
+        <div className="top-20 mx-20 mt-4">
             {data && species &&
                 <>
                     <Heading level={2}>#{data.id} {capitalizeAllString(data.name)}</Heading>
                     {species.genera && species.genera.filter(g => g.language.name === 'en').map((g, i) => <Heading level={3} key={i} className="text-gray-600">{g.genus}</Heading>)}
-                    {data.sprites && <img src={data.sprites.front_default} alt={`Front of ${data.name}`} />}
+                    {data.sprites && <img src={getOfficialArtworkFromName(name)} alt={`Front of ${data.name}`} className="max-w-64"/>}
                     {data.types && data.types.map((t, i) => <TypeInfo key={i} name={t.type.name} />)}
 
                     {species.evolution_chain && <EvolutionLine url={species.evolution_chain.url} />}
