@@ -578,6 +578,10 @@ video {
   flex: 1 1 0%;
 }
 
+.flex-row {
+  flex-direction: row;
+}
+
 .flex-col {
   flex-direction: column;
 }

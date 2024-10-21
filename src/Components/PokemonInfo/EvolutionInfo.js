@@ -16,7 +16,7 @@ const EvolutionInfo = ({ data }) => {
                         {d.min_level && <span>(Level {data.evolution_details[0].min_level})</span>}
                         {d.min_happiness && <span>(Happy)</span>}
                         {d.item && <>
-                            <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${d.item.name}.png`} alt={`Sprite for ${capitalizeAllString(d.item.name)}`}/>
+                            <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${d.item.name}.png`} alt={`Sprite for ${capitalizeAllString(d.item.name)}`} />
                             <p>{capitalizeAllString(d.item.name)}</p>
                         </>}
                     </div>
@@ -28,11 +28,20 @@ const EvolutionInfo = ({ data }) => {
                     {capitalizeAllString(data.species.name)}
                 </Link>
             </div>
-            {data.evolves_to && data.evolves_to.map((info, i) =>
+            {data.evolves_to && data.evolves_to.length === 1 && data.evolves_to.map((info, i) =>
                 <React.Fragment key={i}>
                     <EvolutionInfo data={info} />
                 </React.Fragment>
             )}
+            {data.evolves_to && data.evolves_to.length > 1 &&
+                <div>
+                    {data.evolves_to.map((info, i) =>
+                        <div className="flex flex-row items-center" key={i}>
+                            <EvolutionInfo data={info} />
+                        </div>
+                    )}
+                </div>
+            }
         </>
     );
 }
