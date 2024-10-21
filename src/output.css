@@ -577,12 +577,12 @@ video {
   margin-bottom: 0.5rem;
 }
 
-.mt-4 {
-  margin-top: 1rem;
-}
-
 .ml-2 {
   margin-left: 0.5rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
 }
 
 .flex {
@@ -615,6 +615,10 @@ video {
 
 .flex-1 {
   flex: 1 1 0%;
+}
+
+.resize {
+  resize: both;
 }
 
 .flex-row {
