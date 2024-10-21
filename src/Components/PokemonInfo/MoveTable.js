@@ -28,8 +28,13 @@ const MoveTable = ({ moves, learnType, startGen }) => {
                         </thead>
                         <tbody>
                             {moves
-                                .filter(m => m.version_group_details.some(v => v.move_learn_method.name === learnType && v.version_group.name === selectedVersion))
-                                .map(m => {return {name: m.move.name, level: m.version_group_details.filter(v => v.version_group.name === selectedVersion)[0].level_learned_at}})
+                                .filter(m => m.version_group_details
+                                    .some(v => v.move_learn_method.name === learnType && v.version_group.name === selectedVersion))
+                                .map(m => {
+                                    return {
+                                        name: m.move.name,
+                                        level: m.version_group_details.filter(v => v.version_group.name === selectedVersion)[0].level_learned_at}
+                                    })
                                 .sort((a, b) => a.level - b.level)
                                 .map((m, i) =>
                                     <MoveInfo key={i}
