@@ -9,19 +9,26 @@ const EvolutionInfo = ({ data }) => {
 
     return (
         <>
-            {data.evolution_details && data.evolution_details.map((d, i) =>
-                <div key={i} className="text-center">
+            {data.evolution_details && data.evolution_details.length > 0 &&
+                <div className="text-center">
                     <p>{`=>`}</p>
-                    <div className="flex flex-col items-center">
-                        {d.min_level && <span>(Level {data.evolution_details[0].min_level})</span>}
-                        {d.min_happiness && <span>(Happy)</span>}
-                        {d.item && <>
-                            <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${d.item.name}.png`} alt={`Sprite for ${capitalizeAllString(d.item.name)}`} />
-                            <p>{capitalizeAllString(d.item.name)}</p>
-                        </>}
-                    </div>
+                    {data.evolution_details.map((d, i) =>
+                        <React.Fragment key={i}>
+                            <div className="flex flex-col items-center">
+                                {d.min_level && <span>(Level {data.evolution_details[0].min_level})</span>}
+                                {d.min_happiness && <span>(Happy{d.time_of_day ? ` at ${d.time_of_day}` : ""})</span>}
+                                {d.item && <>
+                                    <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${d.item.name}.png`} alt={`Sprite for ${capitalizeAllString(d.item.name)}`} />
+                                    <p>{capitalizeAllString(d.item.name)}</p>
+                                </>}
+                                {d.location && <>
+                                    <span>Level up at {capitalizeAllString(d.location.name)}</span>
+                                </>}
+                            </div>
+                        </React.Fragment>
+                    )}
                 </div>
-            )}
+            }
             <div>
                 <Link to={`/pokemon/${data.species.name}`}>
                     <img src={getImageFromName(data.species.name)} alt={`Sprite of ${data.species.name}`} />
