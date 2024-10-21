@@ -578,6 +578,10 @@ video {
   flex: 1 1 0%;
 }
 
+.flex-col {
+  flex-direction: column;
+}
+
 .flex-wrap {
   flex-wrap: wrap;
 }
@@ -692,6 +696,10 @@ video {
   padding-right: 0.5rem;
 }
 
+.text-center {
+  text-align: center;
+}
+
 .capitalize {
   text-transform: capitalize;
 }
@@ -704,4 +712,8 @@ video {
 .shadow-gray-700 {
   --tw-shadow-color: #374151;
   --tw-shadow: var(--tw-shadow-colored);
+}
+
+.filter {
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }

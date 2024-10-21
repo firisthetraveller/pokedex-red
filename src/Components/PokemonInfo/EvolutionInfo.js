@@ -12,10 +12,14 @@ const EvolutionInfo = ({ data }) => {
             {data.evolution_details && data.evolution_details.map((d, i) =>
                 <div key={i} className="text-center">
                     <p>{`=>`}</p>
-                    <p>
+                    <div className="flex flex-col items-center">
                         {d.min_level && <span>(Level {data.evolution_details[0].min_level})</span>}
                         {d.min_happiness && <span>(Happy)</span>}
-                    </p>
+                        {d.item && <>
+                            <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${d.item.name}.png`} alt={`Sprite for ${capitalizeAllString(d.item.name)}`}/>
+                            <p>{capitalizeAllString(d.item.name)}</p>
+                        </>}
+                    </div>
                 </div>
             )}
             <div>
