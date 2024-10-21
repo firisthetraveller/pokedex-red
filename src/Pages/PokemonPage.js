@@ -7,6 +7,7 @@ import StatInfo from "../Components/PokemonInfo/StatInfo";
 import TypeInfo from "../Components/PokemonInfo/TypeInfo";
 import EvolutionLine from "../Components/PokemonInfo/EvolutionLine";
 import usePokemonIds from "../Hooks/usePokemonIds";
+import SectionWrapper from "../Components/PokemonInfo/SectionWrapper";
 
 const PokemonPage = () => {
     const { name } = useParams();
@@ -14,7 +15,7 @@ const PokemonPage = () => {
 
     console.log("Species URL", `https://pokeapi.co/api/v2/pokemon-species/${getId(name)}`);
 
-    const { data, error: error_data} = useFetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
+    const { data, error: error_data } = useFetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
     const { data: species, error: error_species } = useFetch(`https://pokeapi.co/api/v2/pokemon-species/${getId(name)}`);
     const { capitalizeAllString } = useFormat();
 
@@ -34,10 +35,15 @@ const PokemonPage = () => {
                     {species.evolution_chain && <EvolutionLine url={species.evolution_chain.url} />}
 
                     {/** Abilities */}
+                    <SectionWrapper name="Abilities">
                     {data.abilities && data.abilities.map((a, i) =>
                         <p key={i}>{capitalizeAllString(a.ability.name)} {a.is_hidden && <span className="bg-gray-400 p-1 rounded">Hidden</span>}</p>
                     )}
-                    {data.stats && data.stats.map((s, i) => <StatInfo key={i} base={s.base_stat} ev={s.effort} name={s.stat.name} />)}
+                    </SectionWrapper>
+
+                    <SectionWrapper name="Base stats">
+                        {data.stats && data.stats.map((s, i) => <StatInfo key={i} base={s.base_stat} ev={s.effort} name={s.stat.name} />)}
+                    </SectionWrapper>
                 </>
             }
             {error_data && <p>{error_data}</p>}
