@@ -1,6 +1,6 @@
 const commonStyle = ""
 
-const Heading = ({ level, className, children }) => {
+const Heading = ({ level, className = "", children }) => {
     switch (level) {
         case 1: return <h1 className={`${commonStyle} ${className} font-bold text-2xl my-2`}>{children}</h1>;
         case 2: return <h2 className={`${commonStyle} ${className} font-semibold text-lg my-1`}>{children}</h2>;
