@@ -4,7 +4,7 @@ import Heading from "./Base/Heading";
 
 const Navbar = () => {
     return (
-        <div className="fixed h-16">
+        <div className="fixed h-16 lg:px-12 pt-4 pl-4">
             <Link to="/home" className="flex items-center">
                 <PokemonLogo/><Heading level={1}>Pokédex</Heading>
             </Link>
