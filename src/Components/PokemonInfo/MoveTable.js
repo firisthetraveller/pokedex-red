@@ -7,7 +7,7 @@ import MoveInfo from "./MoveInfo";
 
 const MoveTable = ({ moves, learnType, startGen }) => {
     const [selectedVersion, setSelectedVersion] = useState("red-blue");
-    const { capitalizeAllString, shorthandString } = useFormat();
+    const { capitalizeAllString } = useFormat();
     const { getAllNextGenerations } = usePokemonGenerations();
 
     const versions = getAllNextGenerations(startGen);
