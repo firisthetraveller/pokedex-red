@@ -18,11 +18,14 @@ const Home = () => {
     const { getId } = usePokemonIds();
 
     return (
-        <div className="flex items-center flex-wrap">
-            {data.previous && <Link to={`/home/${Math.max(offset - limit, 0)}/${limit}`} ><FontAwesomeIcon icon={faArrowLeft} /></Link>}
-            {data.results && data.results.map((r, i) => <PokemonCard key={i} id={getId(r.name)} name={r.name} />)}
-            {data.next && <Link to={`/home/${offset + limit}/${limit}`}><FontAwesomeIcon icon={faArrowRight} /></Link>}
-        </div>
+        <>
+            {data && <div className="flex items-center flex-wrap">
+                {data.previous && <Link to={`/home/${Math.max(offset - limit, 0)}/${limit}`} ><FontAwesomeIcon icon={faArrowLeft} /></Link>}
+                {data.results && data.results.map((r, i) => <PokemonCard key={i} id={getId(r.name)} name={r.name} />)}
+                {data.next && <Link to={`/home/${offset + limit}/${limit}`}><FontAwesomeIcon icon={faArrowRight} /></Link>}
+            </div>}
+            {error && <p>{error}</p>}
+        </>
     );
 }
 
