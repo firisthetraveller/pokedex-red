@@ -19,6 +19,20 @@
   font-style: normal;
 }
 
+body {
+  user-select: none;
+  /* Standard syntax */
+  -webkit-user-select: none;
+  /* Safari */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+
+  font-family: "Poppins", sans-serif;
+  font-weight: 200;
+  font-style: normal;
+}
+
 .type-shadow {
   text-shadow: 1px 1px #505050;
 }
