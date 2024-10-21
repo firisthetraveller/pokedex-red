@@ -17,7 +17,7 @@ const PokemonPage = () => {
     const { getId, getOfficialArtworkFromName } = usePokemonIds();
 
     const { data, error: error_data } = useFetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
-    const { data: species, error: error_species } = useFetch(getId(name) ? `https://pokeapi.co/api/v2/pokemon-species/${getId(name)}` : "");
+    const { data: species, error: error_species } = useFetch(data ? data.species.url : "");
     const { capitalizeAllString } = useFormat();
 
     return (
