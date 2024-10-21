@@ -1,4 +1,4 @@
-const exceptions = new Map([['nidoran-m', 'Nidoran ♂'], ['nidoran-f', 'Nidoran ♀']]);
+const exceptions = new Map([['nidoran-m', 'Nidoran ♂'], ['nidoran-f', 'Nidoran ♀'], ['xd', 'XD']]);
 
 const capitalize = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);;
