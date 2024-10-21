@@ -29,6 +29,8 @@ const EvolutionInfo = ({ data }) => {
                                             <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${d.item.name}.png`} alt={`Sprite for ${capitalizeAllString(d.item.name)}`} />
                                             <p>{capitalizeAllString(d.item.name)}</p>
                                         </>}
+                                        {/** TODO It triggers twice with Feebas: two entries for min_beauty */}
+                                        {d.min_beauty && <span>Level up with max beauty</span>}
                                         {d.trigger.name === "trade" &&
                                             <>
                                                 {d.held_item && <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${d.held_item.name}.png`} alt={`Sprite for ${capitalizeAllString(d.held_item.name)}`} />}
