@@ -5,6 +5,7 @@ const StatInfo = ({ base, ev, name }) => {
 
     return (
         <>
+            {/** TODO Bar chart is not aligned */}
             <div className="flex items-center">
                 <span className="flex-1">{name === 'hp' ? 'HP' : capitalizeAllString(name)}</span>
                 <span>{base}</span>
