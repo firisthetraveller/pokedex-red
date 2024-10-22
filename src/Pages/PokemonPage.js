@@ -41,8 +41,8 @@ const PokemonPage = () => {
                         {data.types && <SectionWrapper name={`Type${data.types.length > 1 ? 's' : ''}`} className="text-center">
                             {data.types.map((t, i) => <TypeInfo key={i} name={t.type.name} />)}
                         </SectionWrapper>}
-                        {data.height && <BasicInfo name="Height" value={`${data.height / 10} m`} className="text-center"/>}
-                        {data.weight && <BasicInfo name="Weight" value={`${data.weight / 10} kg`} className="text-center"/>}
+                        {data.height && <BasicInfo name="Height" value={`${data.height / 10} m`} className="text-center" />}
+                        {data.weight && <BasicInfo name="Weight" value={`${data.weight / 10} kg`} className="text-center" />}
                     </SectionWrapper>}
 
                     {species.evolution_chain && <SectionWrapper name="Evolution">
@@ -50,17 +50,19 @@ const PokemonPage = () => {
                     </SectionWrapper>}
 
                     {species.varieties && species.varieties.length > 1 && <SectionWrapper name="Variants" className="flex">
-                        <VariantInfo data={species.varieties} name={data.name}/>
+                        <VariantInfo data={species.varieties} name={data.name} />
                     </SectionWrapper>}
 
                     {data.abilities && <SectionWrapper name="Abilities">
                         {data.abilities.map((a, i) => <AbilityInfo key={i} name={a.ability.name} hidden={a.is_hidden} />)}
                     </SectionWrapper>}
 
-                    {species && <GameSelector species={species} version={selectedVersion} setSelectedVersion={setSelectedVersion}/>}
+                    {species && <SectionWrapper name="Game selector">
+                        <GameSelector species={species} version={selectedVersion} setSelectedVersion={setSelectedVersion} />
+                    </SectionWrapper>}
 
                     {species.flavor_text_entries && <SectionWrapper name="Pokédex entries">
-                        <PokedexFlavorText selectedVersion={selectedVersion} entries={species.flavor_text_entries.filter(e => e.language.name === "en")}/>
+                        <PokedexFlavorText selectedVersion={selectedVersion} entries={species.flavor_text_entries.filter(e => e.language.name === "en")} />
                     </SectionWrapper>}
 
                     {data.stats && <SectionWrapper name="Base stats">
