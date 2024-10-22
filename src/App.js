@@ -1,15 +1,18 @@
 
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
-import Header from './Components/Base/Navbar';
-
-import './App.css';
-import './output.css';
-import Home from './Pages/Home';
-import PokemonPage from './Pages/PokemonPage';
 import { PokemonIdProvider } from './Contexts/PokemonIdContext';
 import { PokemonGenerationProvider } from './Contexts/PokemonGenerationContext';
 import { PokemonMoveProvider } from './Contexts/PokemonMoveContext';
+
+import Header from './Components/Base/Header';
+import Footer from './Components/Base/Footer';
+
+import Home from './Pages/Home';
+import PokemonPage from './Pages/PokemonPage';
+
+import './App.css';
+import './output.css';
 
 function App() {
   return (
@@ -28,6 +31,7 @@ function App() {
                   <Route path="*" element={<Navigate to="/home/0/40" />} />
                 </Routes>
               </div>
+              <Footer />
             </BrowserRouter>
           </PokemonMoveProvider>
         </PokemonGenerationProvider>
