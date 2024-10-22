@@ -3,9 +3,7 @@ import useFormat from "../../Hooks/useFormat";
 import { usePokemonIds } from "../../Hooks/usePokemonData";
 
 const VariantInfo = ({ data, name }) => {
-    console.log(name);
     const displayedData = data.filter(d => d.pokemon.name !== name);
-    console.log(displayedData)
     const { getImageFromName } = usePokemonIds();
     const { capitalizeAllString } = useFormat();
 
