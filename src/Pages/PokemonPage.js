@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 
 import useFormat from "../Hooks/useFormat";
@@ -14,6 +15,8 @@ import MoveTables from "../Components/PokemonInfo/MoveTables";
 import BasicInfo from "../Components/PokemonInfo/BasicInfo";
 import VariantInfo from "../Components/PokemonInfo/VariantInfo";
 import PokedexFlavorText from "../Components/PokemonInfo/PokedexFlavorText";
+import GameSelector from "../Components/PokemonInfo/GameSelector";
+
 
 const PokemonPage = () => {
     const { name } = useParams();
@@ -22,6 +25,8 @@ const PokemonPage = () => {
     const { data, error: error_data } = useFetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
     const { data: species, error: error_species } = useFetch(data ? data.species.url : "");
     const { capitalizeAllString } = useFormat();
+
+    const [selectedVersion, setSelectedVersion] = useState("red-blue");
 
     return (
         <div className="top-20 lg:mx-20 mx-8 mt-4 flex flex-col">
@@ -52,8 +57,10 @@ const PokemonPage = () => {
                         {data.abilities.map((a, i) => <AbilityInfo key={i} name={a.ability.name} hidden={a.is_hidden} />)}
                     </SectionWrapper>}
 
+                    {species && <GameSelector species={species} version={selectedVersion} setSelectedVersion={setSelectedVersion}/>}
+
                     {species.flavor_text_entries && <SectionWrapper name="Pokédex entries">
-                        <PokedexFlavorText entries={species.flavor_text_entries.filter(e => e.language.name === "en")}/>
+                        <PokedexFlavorText selectedVersion={selectedVersion} entries={species.flavor_text_entries.filter(e => e.language.name === "en")}/>
                     </SectionWrapper>}
 
                     {data.stats && <SectionWrapper name="Base stats">
@@ -61,7 +68,7 @@ const PokemonPage = () => {
                     </SectionWrapper>}
 
                     {data.moves && <SectionWrapper name="Moves">
-                        <MoveTables moves={data.moves} genName={species.generation.name} />
+                        <MoveTables moves={data.moves} selectedVersion={selectedVersion} />
                     </SectionWrapper>}
                 </>
             }
