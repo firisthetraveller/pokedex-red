@@ -17,7 +17,7 @@ const StatInfo = ({ stats }) => {
                 </div>
 
                 {/** Bars */}
-                <div className="flex-2 flex flex-col">
+                <div className="flex-2 lg:flex-3 xl:flex-4 flex flex-col">
                     {stats.map((s, i) => <div className="flex-1 m-2 rounded">
                         <div style={{ width: `${Math.floor(s.base_stat * 100 / 255)}%` }} className="bg-red-600 h-2 rounded border border-red-500" />
                     </div>)}
