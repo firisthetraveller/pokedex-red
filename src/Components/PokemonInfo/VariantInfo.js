@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import useFormat from "../../Hooks/useFormat";
 import { usePokemonIds } from "../../Hooks/usePokemonData";
 
@@ -13,8 +14,10 @@ const VariantInfo = ({ data, name }) => {
             {
                 displayedData.length > 0
                     ? displayedData.map((d, i) => <div key={i} className="m-2 flex flex-col items-center">
-                        <img src={getImageFromName(d.pokemon.name)}  alt={`Sprite for ${capitalizeAllString(d.pokemon.name)}`}/>
-                        <p>{capitalizeAllString(d.pokemon.name)}</p>
+                        <Link to={`/pokemon/${d.pokemon.name}`}>
+                            <img src={getImageFromName(d.pokemon.name)} alt={`Sprite for ${capitalizeAllString(d.pokemon.name)}`} />
+                            <p>{capitalizeAllString(d.pokemon.name)}</p>
+                        </Link>
                     </div>)
                     : <p>No other variants</p>
             }
