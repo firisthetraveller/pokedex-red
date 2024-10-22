@@ -1,19 +1,28 @@
 import useFormat from "../../Hooks/useFormat";
 
-const StatInfo = ({ base, ev, name }) => {
+const StatInfo = ({ stats }) => {
     const { capitalizeAllString } = useFormat();
 
     return (
         <>
-            {/** TODO Bar chart is not aligned */}
-            <div className="flex items-center">
-                <span className="flex-1">{name === 'hp' ? 'HP' : capitalizeAllString(name)}</span>
-                <span>{base}</span>
-                <div className="flex-3 mx-2 rounded">
-                    <div style={{ width: `${Math.floor(base * 100 / 255)}%` }} className="bg-red-600 h-2 rounded border border-red-500" />
+            {stats && <div className="flex">
+                <div className="flex-1 flex flex-col">
+                    {stats.map((s, i) => <>
+                        {/* <StatInfo key={i} base={} ev={s.effort} name={} /> */}
+                        <div className="flex items-center">
+                            <span className="flex-1">{s.stat.name === 'hp' ? 'HP' : capitalizeAllString(s.stat.name)}</span>
+                            <span className="flex-1 text-right">{s.base_stat}</span>
+                        </div>
+                    </>)}
                 </div>
-            </div>
 
+                {/** Bars */}
+                <div className="flex-2 flex flex-col">
+                    {stats.map((s, i) => <div className="flex-1 m-2 rounded">
+                        <div style={{ width: `${Math.floor(s.base_stat * 100 / 255)}%` }} className="bg-red-600 h-2 rounded border border-red-500" />
+                    </div>)}
+                </div>
+            </div>}
         </>
     );
 }

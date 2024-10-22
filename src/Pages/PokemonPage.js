@@ -42,7 +42,7 @@ const PokemonPage = () => {
                     </SectionWrapper>}
 
                     {data.stats && <SectionWrapper name="Base stats">
-                        {data.stats.map((s, i) => <StatInfo key={i} base={s.base_stat} ev={s.effort} name={s.stat.name} />)}
+                        <StatInfo stats={data.stats}/>
                     </SectionWrapper>}
 
                     {data.moves && <SectionWrapper name="Moves">
