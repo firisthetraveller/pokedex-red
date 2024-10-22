@@ -1,8 +1,8 @@
 import SectionWrapper from "../Base/SectionWrapper";
 
-const BasicInfo = ({name, value}) => {
+const BasicInfo = ({name, value, className = ""}) => {
     return (
-        <SectionWrapper name={name}>
+        <SectionWrapper name={name} className={className}>
             {value}
         </SectionWrapper>
     );

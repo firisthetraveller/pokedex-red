@@ -30,14 +30,12 @@ const PokemonPage = () => {
                     {data.sprites && <img src={getOfficialArtworkFromName(name)} alt={`Front of ${data.name}`} className="max-md:self-center max-w-64" />}
 
 
-                    {data.types && <SectionWrapper name="Species data">
-                        <div className="flex">
-                            {data.types && <SectionWrapper name={`Type${data.types.length > 1 ? 's' : ''}`}>
-                                {data.types.map((t, i) => <TypeInfo key={i} name={t.type.name} />)}
-                            </SectionWrapper>}
-                            {data.height && <BasicInfo name="Height" value={`${data.height / 10} m`} />}
-                            {data.weight && <BasicInfo name="Weight" value={`${data.weight / 10} kg`} />}
-                        </div>
+                    {data.types && <SectionWrapper name="Species data" className="flex">
+                        {data.types && <SectionWrapper name={`Type${data.types.length > 1 ? 's' : ''}`} className="text-center">
+                            {data.types.map((t, i) => <TypeInfo key={i} name={t.type.name} />)}
+                        </SectionWrapper>}
+                        {data.height && <BasicInfo name="Height" value={`${data.height / 10} m`} className="text-center"/>}
+                        {data.weight && <BasicInfo name="Weight" value={`${data.weight / 10} kg`} className="text-center"/>}
                     </SectionWrapper>}
 
                     {species.evolution_chain && <SectionWrapper name="Evolution">
