@@ -7,7 +7,8 @@ const MoveTable = ({ moves, learnType, selectedVersion, sort }) => {
 
     return (
         <>
-            {displayedMoves.length > 0 && <table>
+            {displayedMoves.length > 0 
+            ? <table>
                 <thead>
                     <tr>
                         <th className="px-2">Name</th>
@@ -29,7 +30,9 @@ const MoveTable = ({ moves, learnType, selectedVersion, sort }) => {
                                 name={m.name}
                             />)}
                 </tbody>
-            </table>}
+            </table>
+            : <p>No moves learnable this way.</p>}
+            
         </>
     );
 }
