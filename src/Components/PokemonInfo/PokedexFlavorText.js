@@ -1,10 +1,15 @@
 import useFormat from "../../Hooks/useFormat";
+import { usePokemonGenerations } from "../../Hooks/usePokemonData";
 
 const PokedexFlavorText = ({ entries, selectedVersion }) => {
     const { capitalizeAllString } = useFormat();
+    const { getGenerationGames } = usePokemonGenerations();
 
-    const selectedGamesText = selectedVersion ? entries.filter(e => selectedVersion.includes(e.version.name)) : [];
+    /** @type {any[]} */
+    const games = getGenerationGames(selectedVersion);
 
+    const selectedGamesText = (selectedVersion && games) ? entries.filter(e => games.includes(e.version.name)) : [];
+    
     return (
         <>
             {selectedVersion && (selectedGamesText.length > 0

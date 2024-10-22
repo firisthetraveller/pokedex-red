@@ -13,7 +13,7 @@ const getGenerationNumber = (name) => {
 }
 
 export const PokemonGenerationProvider = ({ children }) => {
-    const [data, setData] = useState(new Map());
+    const [data, setData] = useState({ generations: new Map(), games: new Map() });
     const [errors, setErrors] = useState([]);
 
     useEffect(() => {
@@ -22,7 +22,18 @@ export const PokemonGenerationProvider = ({ children }) => {
             .then((d) => {
                 d.results.forEach(r => {
                     fetch(r.url).then((response) => response.json())
-                        .then(d => setData(m => new Map(m.set(getGenerationNumber(d.generation.name), m.get(getGenerationNumber(d.generation.name)) ? m.get(getGenerationNumber(d.generation.name)).add(r.name) : new Set([r.name])))))
+                        .then(d => {
+                            setData(data => {
+                                return {
+                                    games: new Map(data.games.set(d.name, d.versions.map(v => v.name))),
+                                    generations: new Map(data.generations.set(
+                                        getGenerationNumber(d.generation.name),
+                                        data.generations.get(getGenerationNumber(d.generation.name))
+                                            ? data.generations.get(getGenerationNumber(d.generation.name)).add(r.name)
+                                            : new Set([r.name])))
+                                }
+                            })
+                        })
                         .catch(err => setErrors(e => [...e, err.message]));
                 });
             })
@@ -35,7 +46,7 @@ export const PokemonGenerationProvider = ({ children }) => {
     const getAllNextGenerations = useCallback((start) => {
         const games = [];
 
-        data.forEach((v, k) => {
+        data.generations.forEach((v, k) => {
             if (k >= getGenerationNumber(start)) {
                 games.push([...v]);
             }
@@ -44,8 +55,12 @@ export const PokemonGenerationProvider = ({ children }) => {
         return games.flat();
     }, [data]);
 
+    const getGenerationGames = useCallback((generation) => {
+        return data.games.get(generation);
+    }, [data]);
+
     return (
-        <PokemonGenerationContext.Provider value={{ ...data, getAllNextGenerations }}>
+        <PokemonGenerationContext.Provider value={{ ...data, getAllNextGenerations, getGenerationGames }}>
             {children}
             {errors && errors.map(e => <p>{e}</p>)}
         </PokemonGenerationContext.Provider>
