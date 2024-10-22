@@ -28,6 +28,9 @@ const MoveTables = ({ moves, genName }) => {
             <SectionWrapper name="Learned moves by tutor">
                 <MoveTable moves={moves} learnType="tutor" sort={(a, b) => a.name < b.name} selectedVersion={selectedVersion} />
             </SectionWrapper>
+            <SectionWrapper name="Learned moves by TMs">
+                <MoveTable moves={moves} learnType="machine" sort={(a, b) => a.name < b.name} selectedVersion={selectedVersion} />
+            </SectionWrapper>
         </>
     );
 }
