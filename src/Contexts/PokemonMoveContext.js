@@ -22,7 +22,16 @@ export const PokemonMoveProvider = ({ children }) => {
             fetch(`https://pokeapi.co/api/v2/move/${n}`)
                 .then((response) => response.json())
                 .then((d) => {
-                    setMoves(moves => moves.set(n, {machines: d.machines, type: d.type.name, power: d.power, pp: d.pp, damage_class: d.damage_class.name, accuracy: d.accuracy}));
+                    let effect_entry = d.effect_entries.find(e => e.language.name === "en");
+                    setMoves(moves => moves.set(n, {
+                        machines: d.machines,
+                        type: d.type.name,
+                        power: d.power,
+                        pp: d.pp,
+                        damage_class: d.damage_class.name,
+                        accuracy: d.accuracy,
+                        effect: effect_entry ? effect_entry.effect : "-"
+                    }));
                 })
                 .catch((err) => {
                     setErrors(e => [...e, err.message]);
