@@ -11,6 +11,7 @@ import SectionWrapper from "../Components/PokemonInfo/SectionWrapper";
 import Heading from "../Components/Base/Heading";
 import AbilityInfo from "../Components/PokemonInfo/AbilityInfo";
 import MoveTables from "../Components/PokemonInfo/MoveTables";
+import BasicInfo from "../Components/PokemonInfo/BasicInfo";
 
 const PokemonPage = () => {
     const { name } = useParams();
@@ -29,8 +30,14 @@ const PokemonPage = () => {
                     {data.sprites && <img src={getOfficialArtworkFromName(name)} alt={`Front of ${data.name}`} className="max-w-64" />}
 
 
-                    {data.types && <SectionWrapper name={`Type${data.types.length > 1 ? 's' : ''}`}>
-                        {data.types.map((t, i) => <TypeInfo key={i} name={t.type.name} />)}
+                    {data.types && <SectionWrapper name="Species data">
+                        <div className="flex">
+                            {data.types && <SectionWrapper name={`Type${data.types.length > 1 ? 's' : ''}`}>
+                                {data.types.map((t, i) => <TypeInfo key={i} name={t.type.name} />)}
+                            </SectionWrapper>}
+                            {data.height && <BasicInfo name="Height" value={`${data.height / 10} m`} />}
+                            {data.weight && <BasicInfo name="Weight" value={`${data.weight / 10} kg`} />}
+                        </div>
                     </SectionWrapper>}
 
                     {species.evolution_chain && <SectionWrapper name="Evolution">

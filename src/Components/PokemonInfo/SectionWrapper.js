@@ -7,8 +7,8 @@ const SectionWrapper = ({ children, name }) => {
     const level = useContext(LevelContext);
 
     return (
-        <div className="my-2">
-            <Heading level={level + 1}>{name}</Heading>
+        <div className="px-2 mt-2">
+            <Heading level={level + 1} className="my-2">{name}</Heading>
             <LevelContext.Provider value={level + 1}>
                 {children}
             </LevelContext.Provider>
