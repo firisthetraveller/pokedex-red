@@ -6,7 +6,7 @@ const MoveInfo = ({ level, name }) => {
     return (
         <tr>
             <td className="px-2">{capitalizeAllString(name)}</td>
-            <td className="px-2">{level}</td>
+            <td className="px-2 text-center">{level}</td>
         </tr>
     );
 }
