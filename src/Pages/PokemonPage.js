@@ -13,6 +13,7 @@ import AbilityInfo from "../Components/PokemonInfo/AbilityInfo";
 import MoveTables from "../Components/PokemonInfo/MoveTables";
 import BasicInfo from "../Components/PokemonInfo/BasicInfo";
 import VariantInfo from "../Components/PokemonInfo/VariantInfo";
+import PokedexFlavorText from "../Components/PokemonInfo/PokedexFlavorText";
 
 const PokemonPage = () => {
     const { name } = useParams();
@@ -49,6 +50,10 @@ const PokemonPage = () => {
 
                     {data.abilities && <SectionWrapper name="Abilities">
                         {data.abilities.map((a, i) => <AbilityInfo key={i} name={a.ability.name} hidden={a.is_hidden} />)}
+                    </SectionWrapper>}
+
+                    {species.flavor_text_entries && <SectionWrapper name="Pokédex entries">
+                        <PokedexFlavorText entries={species.flavor_text_entries.filter(e => e.language.name === "en")}/>
                     </SectionWrapper>}
 
                     {data.stats && <SectionWrapper name="Base stats">
