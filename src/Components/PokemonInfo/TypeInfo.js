@@ -19,7 +19,7 @@ const getTypeColorStyle = (name) => {
         case "psychic": return "bg-pink-500";
         case "dark": return "bg-gray-800";
         case "steel": return "bg-gray-400";
-        case "ghost": return "bg-slate-700";
+        case "ghost": return "bg-indigo-800";
         case "electric": return "bg-yellow-400";
         case "fairy": return "bg-pink-300";
         default: throw new Error(`Type not implemented yet: ${name}`);
