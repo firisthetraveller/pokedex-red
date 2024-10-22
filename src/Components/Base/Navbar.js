@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import PokemonLogo from "./Icons/PokemonLogo";
-import Heading from "./Base/Heading";
+import PokemonLogo from "../Icons/PokemonLogo";
+import Heading from "./Heading";
 
 const Navbar = () => {
     return (
