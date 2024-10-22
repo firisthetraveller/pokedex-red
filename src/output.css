@@ -614,12 +614,20 @@ video {
   height: 6rem;
 }
 
+.h-40 {
+  height: 10rem;
+}
+
 .min-h-16 {
   min-height: 4rem;
 }
 
 .w-24 {
   width: 6rem;
+}
+
+.w-40 {
+  width: 10rem;
 }
 
 .w-full {
@@ -818,6 +826,11 @@ video {
 .text-lg {
   font-size: 1.125rem;
   line-height: 1.75rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
 .font-bold {

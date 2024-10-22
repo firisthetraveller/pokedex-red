@@ -6,9 +6,11 @@ import useFormat from "../../Hooks/useFormat";
 import { usePokemonIds } from "../../Hooks/usePokemonData";
 
 import TypeInfo from "./TypeInfo";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 const EvolutionInfo = ({ data }) => {
-    const { getImageFromName } = usePokemonIds();
+    const { getImageFromName, get3DVisualFromName } = usePokemonIds();
     const { capitalizeAllString } = useFormat();
 
     return (
@@ -18,10 +20,10 @@ const EvolutionInfo = ({ data }) => {
                 : <>
                     {data.evolution_details && data.evolution_details.length > 0 &&
                         <div className="text-center">
-                            <p>{`=>`}</p>
+                            <FontAwesomeIcon icon={faArrowRight} size="2xl" />
                             {data.evolution_details.map((d, i) =>
                                 <React.Fragment key={i}>
-                                    <div className="flex flex-col items-center">
+                                    <div className="flex flex-col items-center text-sm">
                                         {d.min_level && <span>Lvl. {data.evolution_details[0].min_level}</span>}
                                         {d.min_happiness &&
                                             <span>Happy{d.time_of_day ? ` at ${d.time_of_day}` : ""}{d.known_move_type ? <span> with a {<TypeInfo name={d.known_move_type.name} />} move</span> : ""}</span>}
@@ -46,7 +48,7 @@ const EvolutionInfo = ({ data }) => {
                     }
                     <div className="text-center">
                         <Link to={`/pokemon/${data.species.name}`}>
-                            <img src={getImageFromName(data.species.name)} alt={`Sprite of ${data.species.name}`} />
+                            <img src={getImageFromName(data.species.name)} className="h-40 w-40" alt={`Sprite of ${data.species.name}`} />
                             <span className="font-normal">{capitalizeAllString(data.species.name)}</span>
                         </Link>
                     </div>
