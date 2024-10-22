@@ -27,17 +27,14 @@ const EvolutionInfo = ({ data }) => {
                                         {d.min_level && <span>Lvl. {data.evolution_details[0].min_level}</span>}
                                         {d.min_happiness &&
                                             <span>Happy{d.time_of_day ? ` at ${d.time_of_day}` : ""}{d.known_move_type ? <span> with a {<TypeInfo name={d.known_move_type.name} />} move</span> : ""}</span>}
-                                        {d.item && <>
-                                            <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${d.item.name}.png`} alt={`Sprite for ${capitalizeAllString(d.item.name)}`} />
-                                            <p>{capitalizeAllString(d.item.name)}</p>
-                                        </>}
+                                        {d.item && <p>
+                                            <img className="inline" src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${d.item.name}.png`} alt={`Sprite for ${capitalizeAllString(d.item.name)}`} /> {capitalizeAllString(d.item.name)}
+                                        </p>}
                                         {/** TODO It triggers twice with Feebas: two entries for min_beauty */}
                                         {d.min_beauty && <span>Level up with max beauty</span>}
                                         {d.trigger.name === "trade" &&
-                                            <>
-                                                {d.held_item && <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${d.held_item.name}.png`} alt={`Sprite for ${capitalizeAllString(d.held_item.name)}`} />}
-                                                <p>Trade{d.held_item && <span> with {capitalizeAllString(d.held_item.name)}</span>}</p>
-                                            </>}
+                                            <p>Trade{d.held_item && <span> with <img className="inline" src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${d.held_item.name}.png`} alt={`Sprite for ${capitalizeAllString(d.held_item.name)}`} />{capitalizeAllString(d.held_item.name)}</span>}</p>
+                                        }
                                         {d.location && <>
                                             <span>Level up at {capitalizeAllString(d.location.name)}</span>
                                         </>}
