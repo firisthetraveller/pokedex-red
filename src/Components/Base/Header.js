@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import PokemonLogo from "../Icons/PokemonLogo";
 import Heading from "./Heading";
 
-const Navbar = () => {
+const Header = () => {
     return (
         <div className="fixed h-24 lg:px-12 pt-4 pl-4 bg-gradient-to-b from-white from-75% z-10 w-full">
             <Link to="/home" className="flex items-center">
@@ -12,4 +12,4 @@ const Navbar = () => {
     );
 }
 
-export default Navbar;
+export default Header;

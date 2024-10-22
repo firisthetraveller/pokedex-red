@@ -1,7 +1,7 @@
 
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
-import Navbar from './Components/Base/Navbar';
+import Header from './Components/Base/Navbar';
 
 import './App.css';
 import './output.css';
@@ -18,7 +18,7 @@ function App() {
         <PokemonGenerationProvider>
           <PokemonMoveProvider>
             <BrowserRouter basename='/pokedex-red'>
-              <Navbar />
+              <Header />
               <div className='min-h-16' />
               <div>
                 <Routes>
