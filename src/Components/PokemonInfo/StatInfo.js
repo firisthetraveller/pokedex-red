@@ -11,7 +11,7 @@ const StatInfo = ({ stats }) => {
                         {/* <StatInfo key={i} base={} ev={s.effort} name={} /> */}
                         <div className="flex items-center">
                             <span className="flex-1">{s.stat.name === 'hp' ? 'HP' : capitalizeAllString(s.stat.name)}</span>
-                            <span className="flex-1 text-right">{s.base_stat}</span>
+                            <span className="text-right">{s.base_stat}</span>
                         </div>
                     </>)}
                 </div>
