@@ -22,12 +22,12 @@ const PokemonPage = () => {
     const { capitalizeAllString } = useFormat();
 
     return (
-        <div className="top-20 mx-20 mt-4">
+        <div className="top-20 lg:mx-20 mx-8 mt-4 flex flex-col">
             {data && species &&
                 <>
                     <Heading level={2}>#{data.id} {capitalizeAllString(data.name)}</Heading>
                     {species.genera && species.genera.filter(g => g.language.name === 'en').map((g, i) => <Heading level={3} key={i} className="text-gray-600">{g.genus}</Heading>)}
-                    {data.sprites && <img src={getOfficialArtworkFromName(name)} alt={`Front of ${data.name}`} className="max-w-64" />}
+                    {data.sprites && <img src={getOfficialArtworkFromName(name)} alt={`Front of ${data.name}`} className="max-md:self-center max-w-64" />}
 
 
                     {data.types && <SectionWrapper name="Species data">
@@ -49,17 +49,17 @@ const PokemonPage = () => {
                     </SectionWrapper>}
 
                     {data.stats && <SectionWrapper name="Base stats">
-                        <StatInfo stats={data.stats}/>
+                        <StatInfo stats={data.stats} />
                     </SectionWrapper>}
 
                     {data.moves && <SectionWrapper name="Moves">
-                        <MoveTables moves={data.moves} genName={species.generation.name}/>
+                        <MoveTables moves={data.moves} genName={species.generation.name} />
                     </SectionWrapper>}
                 </>
             }
             {error_data && <p>{error_data}</p>}
             {error_species && <p>{error_species}</p>}
-        </div>
+        </div >
     );
 }
 
