@@ -12,6 +12,7 @@ import Heading from "../Components/Base/Heading";
 import AbilityInfo from "../Components/PokemonInfo/AbilityInfo";
 import MoveTables from "../Components/PokemonInfo/MoveTables";
 import BasicInfo from "../Components/PokemonInfo/BasicInfo";
+import VariantInfo from "../Components/PokemonInfo/VariantInfo";
 
 const PokemonPage = () => {
     const { name } = useParams();
@@ -40,6 +41,10 @@ const PokemonPage = () => {
 
                     {species.evolution_chain && <SectionWrapper name="Evolution">
                         <EvolutionLine url={species.evolution_chain.url} />
+                    </SectionWrapper>}
+
+                    {species.varieties && species.varieties.length > 1 && <SectionWrapper name="Variants" className="flex">
+                        <VariantInfo data={species.varieties} name={data.name}/>
                     </SectionWrapper>}
 
                     {data.abilities && <SectionWrapper name="Abilities">
