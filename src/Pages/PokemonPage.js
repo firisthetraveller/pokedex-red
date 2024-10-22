@@ -31,7 +31,7 @@ const PokemonPage = () => {
                     {data.sprites && <img src={getOfficialArtworkFromName(name)} alt={`Front of ${data.name}`} className="max-md:self-center max-w-64" />}
 
 
-                    {data.types && <SectionWrapper name="Species data" className="flex">
+                    {data.types && <SectionWrapper name="Species data" className="flex text-center">
                         {data.types && <SectionWrapper name={`Type${data.types.length > 1 ? 's' : ''}`} className="text-center">
                             {data.types.map((t, i) => <TypeInfo key={i} name={t.type.name} />)}
                         </SectionWrapper>}
