@@ -25,7 +25,7 @@ const MoveTable = ({ moves, learnType, selectedVersion, sort }) => {
                         .map(m => {
                             return {
                                 name: m.move.name,   
-                                level: m.version_group_details.filter(v => v.version_group.name === selectedVersion)[0].level_learned_at
+                                level: m.version_group_details.find(v => v.version_group.name === selectedVersion).level_learned_at
                             }
                         })
                         .sort(sort)
