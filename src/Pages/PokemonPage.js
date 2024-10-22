@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import useFormat from "../Hooks/useFormat";
 import useFetch from "../Hooks/useFetch";
-import { usePokemonIds } from "../Hooks/usePokemonData";
+import { usePokemonIds, usePokemonMoves } from "../Hooks/usePokemonData";
 
 import StatInfo from "../Components/PokemonInfo/StatInfo";
 import TypeInfo from "../Components/PokemonInfo/TypeInfo";
@@ -25,8 +25,15 @@ const PokemonPage = () => {
     const { data, error: error_data } = useFetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
     const { data: species, error: error_species } = useFetch(data ? data.species.url : "");
     const { capitalizeAllString } = useFormat();
+    const { fetchMoves } = usePokemonMoves();
 
     const [selectedVersion, setSelectedVersion] = useState("red-blue");
+
+    useEffect(() => {
+        if(data) {
+            fetchMoves(data.moves.map(m => m.move.name));
+        }
+    }, [data, fetchMoves]);
 
     return (
         <div className="top-20 lg:mx-20 mx-8 mt-4 flex flex-col">

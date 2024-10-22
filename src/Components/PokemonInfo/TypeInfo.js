@@ -1,6 +1,6 @@
 import useFormat from "../../Hooks/useFormat";
 
-const commonStyle = "rounded p-1 pr-1.5 text-white type-shadow mx-1";
+const commonStyle = "rounded p-1 pr-1.5 text-white type-shadow m-1";
 
 const getTypeColorStyle = (name) => {
     switch (name) {
@@ -20,7 +20,7 @@ const getTypeColorStyle = (name) => {
         case "dark": return "bg-gray-800";
         case "steel": return "bg-gray-400";
         case "ghost": return "bg-slate-700";
-        case "electric": return "bg-yellow-500";
+        case "electric": return "bg-yellow-400";
         case "fairy": return "bg-pink-300";
         default: throw new Error(`Type not implemented yet: ${name}`);
     }

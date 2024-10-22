@@ -12,6 +12,11 @@ const MoveTable = ({ moves, learnType, selectedVersion, sort }) => {
                 <thead>
                     <tr>
                         <th className="px-2">Name</th>
+                        <th className="px-2">Type</th>
+                        <th className="px-2">Power</th>
+                        <th className="px-2">Accuracy</th>
+                        <th className="px-2">PP</th>
+                        <th className="px-2">Class</th>
                         {learnType === "level-up" && <th className="px-2">Level learned at</th>}
                     </tr>
                 </thead>
@@ -19,7 +24,7 @@ const MoveTable = ({ moves, learnType, selectedVersion, sort }) => {
                     {displayedMoves
                         .map(m => {
                             return {
-                                name: m.move.name,
+                                name: m.move.name,   
                                 level: m.version_group_details.filter(v => v.version_group.name === selectedVersion)[0].level_learned_at
                             }
                         })
@@ -32,7 +37,6 @@ const MoveTable = ({ moves, learnType, selectedVersion, sort }) => {
                 </tbody>
             </table>
             : <p>No moves learnable this way.</p>}
-            
         </>
     );
 }
