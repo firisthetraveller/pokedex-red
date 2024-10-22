@@ -23,7 +23,10 @@ const MoveTables = ({ moves, genName }) => {
                 {versions && versions.map((v, i) => <option key={i} value={v}>{capitalizeAllString(v)}</option>)}
             </select>
             <SectionWrapper name="Learned moves by leveling up">
-                <MoveTable moves={moves} learnType="level-up" sort={(a, b) => a.level - b.level} selectedVersion={selectedVersion} startGen={genName} />
+                <MoveTable moves={moves} learnType="level-up" sort={(a, b) => a.level - b.level} selectedVersion={selectedVersion} />
+            </SectionWrapper>
+            <SectionWrapper name="Learned moves by tutor">
+                <MoveTable moves={moves} learnType="tutor" sort={(a, b) => a.name < b.name} selectedVersion={selectedVersion} />
             </SectionWrapper>
         </>
     );
