@@ -1,4 +1,4 @@
-import SectionWrapper from "./SectionWrapper";
+import SectionWrapper from "../Base/SectionWrapper";
 
 const BasicInfo = ({name, value}) => {
     return (

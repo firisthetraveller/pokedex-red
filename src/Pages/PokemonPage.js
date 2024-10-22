@@ -7,7 +7,7 @@ import { usePokemonIds } from "../Hooks/usePokemonData";
 import StatInfo from "../Components/PokemonInfo/StatInfo";
 import TypeInfo from "../Components/PokemonInfo/TypeInfo";
 import EvolutionLine from "../Components/PokemonInfo/EvolutionLine";
-import SectionWrapper from "../Components/PokemonInfo/SectionWrapper";
+import SectionWrapper from "../Components/Base/SectionWrapper";
 import Heading from "../Components/Base/Heading";
 import AbilityInfo from "../Components/PokemonInfo/AbilityInfo";
 import MoveTables from "../Components/PokemonInfo/MoveTables";

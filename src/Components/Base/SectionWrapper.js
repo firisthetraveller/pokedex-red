@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import Heading from "../Base/Heading";
+import Heading from "./Heading";
 
 const LevelContext = createContext(1);
 

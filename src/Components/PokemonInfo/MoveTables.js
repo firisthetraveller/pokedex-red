@@ -4,7 +4,7 @@ import { usePokemonGenerations } from "../../Hooks/usePokemonData";
 import useFormat from "../../Hooks/useFormat";
 
 import MoveTable from "./MoveTable";
-import SectionWrapper from "./SectionWrapper";
+import SectionWrapper from "../Base/SectionWrapper";
 
 const MoveTables = ({ moves, genName }) => {
     const [selectedVersion, setSelectedVersion] = useState("red-blue");
