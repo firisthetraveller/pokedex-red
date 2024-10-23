@@ -6,7 +6,7 @@ import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import useFetch from "../Hooks/useFetch";
 import { usePokemonIds } from "../Hooks/usePokemonData";
 
-import PokemonCard from "../Components/PokemonCard";
+import PokemonCard from "../Components/Home/PokemonCard";
 
 const Home = () => {
     const { offset: offsetParam, limit: limitParam } = useParams();

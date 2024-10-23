@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
-import useFormat from "../Hooks/useFormat";
-import { usePokemonIds } from "../Hooks/usePokemonData";
+import useFormat from "../../Hooks/useFormat";
+import { usePokemonIds } from "../../Hooks/usePokemonData";
 
 const PokemonCard = ({ id, name }) => {
     const { capitalizeAllString } = useFormat();
