@@ -60,7 +60,7 @@ const PokemonPage = () => {
                         <VariantInfo data={species.varieties} name={data.name} />
                     </SectionWrapper>}
 
-                    {data.abilities && <SectionWrapper name="Abilities">
+                    {data.abilities && <SectionWrapper name="Abilities" className="flex">
                         {data.abilities.map((a, i) => <AbilityInfo key={i} name={a.ability.name} hidden={a.is_hidden} />)}
                     </SectionWrapper>}
 
