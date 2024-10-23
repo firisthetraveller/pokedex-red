@@ -11,7 +11,7 @@ const AbilityInfo = ({ name, hidden = false }) => {
     return (
         <>
             {effect_entries
-                ? <Tooltipped text={effect_entries.short_effect || effect_entries.effect}>
+                ? <Tooltipped text={effect_entries.short_effect || effect_entries.effect} tooltipClassName="max-w-80">
                     {hidden
                         ? <span className="bg-gray-200 p-1 mx-1 rounded">{capitalizeAllString(name)}</span>
                         : <span className="p-1 mx-1">{capitalizeAllString(name)}</span>
