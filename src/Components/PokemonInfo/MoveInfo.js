@@ -1,5 +1,6 @@
 import useFormat from "../../Hooks/useFormat";
 import { usePokemonMoves } from "../../Hooks/usePokemonData";
+
 import Tooltipped from "../Base/Tooltipped";
 import DamageClass from "../Icons/DamageClass";
 import TypeInfo from "./TypeInfo";
@@ -23,7 +24,7 @@ const MoveInfo = ({ level, name }) => {
                     <td className="px-2">{info.power ? info.power : '-'}</td>
                     <td className="px-2">{info.accuracy ? info.accuracy : '-'}</td>
                     <td className="px-2">{info.pp}</td>
-                    <td className="px-2"><DamageClass name={info.damage_class} /></td>
+                    <td className="px-2"><DamageClass name={info.damage_class}/></td>
                 </>
                 : <td className="px-2">{capitalizeAllString(name)}</td>
             }

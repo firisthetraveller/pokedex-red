@@ -634,6 +634,10 @@ video {
   height: 6rem;
 }
 
+.max-h-6 {
+  max-height: 1.5rem;
+}
+
 .min-h-16 {
   min-height: 4rem;
 }
@@ -650,16 +654,16 @@ video {
   max-width: 16rem;
 }
 
+.max-w-8 {
+  max-width: 2rem;
+}
+
 .max-w-80 {
   max-width: 20rem;
 }
 
 .flex-1 {
   flex: 1 1 0%;
-}
-
-.transform {
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .cursor-help {
