@@ -1,6 +1,7 @@
 import { createContext } from "react";
 
 import useFetch from "../Hooks/useFetch";
+import PokemonLogo from "../Components/Icons/PokemonLogo";
 
 export const PokemonIdContext = createContext(null);
 
@@ -32,9 +33,14 @@ export const PokemonIdProvider = ({ children }) => {
         return ids.get(name);
     }
 
+    const getNames = () => {
+        return [...ids.keys()];
+    }
+
     return (
         <>
-            <PokemonIdContext.Provider value={{ ...ids, getImageFromName, getId, getOfficialArtworkFromName, get3DVisualFromName }}>
+            <PokemonIdContext.Provider value={{ ...ids, getNames, getImageFromName, getId, getOfficialArtworkFromName, get3DVisualFromName }}>
+                {loading && <PokemonLogo spinning={true} />}
                 {!loading && children}
             </PokemonIdContext.Provider>
             {error && <p>{error}</p>}
