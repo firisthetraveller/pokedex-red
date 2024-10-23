@@ -4,7 +4,7 @@ import Tooltipped from "../Base/Tooltipped";
 
 const AbilityInfo = ({ name, hidden = false }) => {
     const { capitalizeAllString } = useFormat();
-    const { data, loading, error } = useFetch(`https://pokeapi.co/api/v2/ability/${name}`);
+    const { data, error } = useFetch(`https://pokeapi.co/api/v2/ability/${name}`);
 
     const effect_entries = data ? data.effect_entries.find(e => e.language.name === "en") : null;
 
