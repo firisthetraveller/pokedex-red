@@ -25,6 +25,10 @@ body {
   font-style: normal;
 }
 
+.results {
+  height: calc(100vh - 120px);
+}
+
 .type-shadow {
   text-shadow: 1px 1px #505050;
 }
