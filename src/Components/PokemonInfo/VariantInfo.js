@@ -14,7 +14,7 @@ const VariantInfo = ({ data, name }) => {
                     ? displayedData.map((d, i) => <div key={i} className="m-2">
                         <Link to={`/pokemon/${d.pokemon.name}`} className="flex flex-col items-center">
                             <img src={getImageFromName(d.pokemon.name)} alt={`Sprite for ${capitalizeAllString(d.pokemon.name)}`} />
-                            <p>{capitalizeAllString(d.pokemon.name)}</p>
+                            <p className="font-normal">{capitalizeAllString(d.pokemon.name)}</p>
                         </Link>
                     </div>)
                     : <p>No other variants</p>
