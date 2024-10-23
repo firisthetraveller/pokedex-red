@@ -549,6 +549,10 @@ video {
   position: fixed;
 }
 
+.absolute {
+  position: absolute;
+}
+
 .top-20 {
   top: 5rem;
 }
@@ -631,12 +635,21 @@ video {
   display: none;
 }
 
+.size-32 {
+  width: 8rem;
+  height: 8rem;
+}
+
 .h-12 {
   height: 3rem;
 }
 
 .h-24 {
   height: 6rem;
+}
+
+.h-full {
+  height: 100%;
 }
 
 .max-h-6 {

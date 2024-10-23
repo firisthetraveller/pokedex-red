@@ -40,7 +40,9 @@ export const PokemonIdProvider = ({ children }) => {
     return (
         <>
             <PokemonIdContext.Provider value={{ ...ids, getNames, getImageFromName, getId, getOfficialArtworkFromName, get3DVisualFromName }}>
-                {loading && <PokemonLogo spinning={true} />}
+                {loading && <div className="w-full h-full flex items-center justify-center absolute">
+                    <PokemonLogo spinning={true} className="size-32 " />
+                </div>}
                 {!loading && children}
             </PokemonIdContext.Provider>
             {error && <p>{error}</p>}
