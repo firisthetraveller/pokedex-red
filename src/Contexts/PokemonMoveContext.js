@@ -18,11 +18,12 @@ export const PokemonMoveProvider = ({ children }) => {
     const [errors, setErrors] = useState([]);
 
     const fetchMoves = (names) => {
-        names.filter(n => !moves.has(n)).forEach(n => {
+        names.filter(n => n && !moves.has(n)).forEach(n => {
             fetch(`https://pokeapi.co/api/v2/move/${n}`)
                 .then((response) => response.json())
                 .then((d) => {
                     let effect_entry = d.effect_entries.find(e => e.language.name === "en");
+            
                     setMoves(moves => moves.set(n, {
                         machines: d.machines,
                         type: d.type.name,
@@ -30,7 +31,7 @@ export const PokemonMoveProvider = ({ children }) => {
                         pp: d.pp,
                         damage_class: d.damage_class.name,
                         accuracy: d.accuracy,
-                        effect: effect_entry ? effect_entry.effect : "-"
+                        effect: effect_entry ? (effect_entry.short_effect ? effect_entry.short_effect : effect_entry.effect) : "-"
                     }));
                 })
                 .catch((err) => {
