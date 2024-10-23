@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import './Tooltip.css';
 
@@ -24,7 +24,7 @@ const Tooltipped = ({ className = "", tooltipClassName = "", children, width, te
 
             {(clicked || hovered) &&
                 <p className={`${tooltipClassName} tooltiptext ml-14`} style={style}>
-                    {text}
+                    {text.split('\n').map(l => <React.Fragment><span>{l}</span><br/></React.Fragment>)}
                 </p>
             }
         </div>
