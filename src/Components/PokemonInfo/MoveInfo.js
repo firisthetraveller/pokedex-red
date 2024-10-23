@@ -18,7 +18,7 @@ const MoveInfo = ({ level, name }) => {
             {info
                 ? <>
                     <td className="px-2">
-                        <Tooltipped text={`${width < 640 && ` Power: ${info.power ? info.power : '-'} | Acc: ${info.accuracy ? info.accuracy : '-'} | PP: ${info.pp}\n`}${info.effect}`}>
+                        <Tooltipped text={`${width < 640 ? ` Power: ${info.power ? info.power : '-'} | Acc: ${info.accuracy ? info.accuracy : '-'} | PP: ${info.pp}\n` : ""}${info.effect}`}>
                             {capitalizeAllString(name)}
                         </Tooltipped >
                     </td>
