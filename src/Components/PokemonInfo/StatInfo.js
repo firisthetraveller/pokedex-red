@@ -17,12 +17,10 @@ const StatInfo = ({ stats }) => {
         <>
             {stats && <div className="flex">
                 <div className="flex-1 flex flex-col">
-                    {stats.map((s, i) => <>
-                        <div className="flex items-center" key={i}>
-                            {/* <StatInfo key={i} base={} ev={s.effort} name={} /> */}
-                            <span className="flex-1">{s.stat.name === 'hp' ? 'HP' : capitalizeAllString(width <= 640 ? shortTranslator(s.stat.name): s.stat.name)}</span>
-                        </div>
-                    </>)}
+                    {stats.map((s, i) => <div className="flex items-center" key={i}>
+                        {/* <StatInfo key={i} base={} ev={s.effort} name={} /> */}
+                        <span className="flex-1">{s.stat.name === 'hp' ? 'HP' : capitalizeAllString(width <= 640 ? shortTranslator(s.stat.name) : s.stat.name)}</span>
+                    </div>)}
                 </div>
 
                 {/** Bars */}

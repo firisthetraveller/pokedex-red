@@ -24,7 +24,7 @@ const Tooltipped = ({ className = "", tooltipClassName = "", children, width, te
 
             {(clicked || hovered) &&
                 <p className={`${tooltipClassName} tooltiptext ml-14`} style={style}>
-                    {text.split('\n').map(l => <React.Fragment><span>{l}</span><br/></React.Fragment>)}
+                    {text.split('\n').map((l, i) => <React.Fragment key={i}><span>{l}</span><br/></React.Fragment>)}
                 </p>
             }
         </div>
