@@ -1,4 +1,5 @@
 import { createContext, useCallback, useEffect, useState } from "react";
+import LoadingPokemonLogo from "../Components/Home/LoadingPokemonLogo";
 
 export const PokemonGenerationContext = createContext(null);
 
@@ -14,14 +15,21 @@ const getGenerationNumber = (name) => {
 
 export const PokemonGenerationProvider = ({ children }) => {
     const [data, setData] = useState({ generations: new Map(), games: new Map() });
+    const [loading, setLoading] = useState(false);
     const [errors, setErrors] = useState([]);
 
+    /** TODO Set loading state: false when all promises have been resolved */
+    /** TODO Loading in background (Web worker) */
+
     useEffect(() => {
+        setLoading(true);
+
         fetch("https://pokeapi.co/api/v2/version-group?limit=30")
             .then((response) => response.json())
             .then((d) => {
-                d.results.forEach(r => {
-                    fetch(r.url).then((response) => response.json())
+                const subFetch = (url, name) => new Promise(resolve => {
+                    fetch(url)
+                        .then((response) => response.json())
                         .then(d => {
                             setData(data => {
                                 return {
@@ -29,13 +37,16 @@ export const PokemonGenerationProvider = ({ children }) => {
                                     generations: new Map(data.generations.set(
                                         getGenerationNumber(d.generation.name),
                                         data.generations.get(getGenerationNumber(d.generation.name))
-                                            ? data.generations.get(getGenerationNumber(d.generation.name)).add(r.name)
-                                            : new Set([r.name])))
+                                            ? data.generations.get(getGenerationNumber(d.generation.name)).add(name)
+                                            : new Set([name])))
                                 }
                             })
+                            resolve();
                         })
                         .catch(err => setErrors(e => [...e, err.message]));
                 });
+                Promise.all(d.results.map(r => subFetch(r.url, r.name)))
+                    .then(values => setLoading(false));
             })
             .catch((err) => {
                 setData(new Map());
@@ -61,7 +72,8 @@ export const PokemonGenerationProvider = ({ children }) => {
 
     return (
         <PokemonGenerationContext.Provider value={{ ...data, getAllNextGenerations, getGenerationGames }}>
-            {children}
+            {loading && <LoadingPokemonLogo />}
+            {!loading && children}
             {errors && errors.map(e => <p>{e}</p>)}
         </PokemonGenerationContext.Provider>
     )

@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import LoadingPokemonLogo from "../Components/Home/LoadingPokemonLogo";
 
 export const PokemonMoveContext = createContext(null);
 
@@ -16,15 +17,18 @@ export const PokemonMoveContext = createContext(null);
 export const PokemonMoveProvider = ({ children }) => {
     const [moves, setMoves] = useState(new Map());
     const [errors, setErrors] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     const fetchMoves = (names) => {
-        names.filter(n => n && !moves.has(n)).forEach(n => {
-            fetch(`https://pokeapi.co/api/v2/move/${n}`)
+        setLoading(true);
+
+        const fetchMove = (name) => new Promise(resolve => {
+            fetch(`https://pokeapi.co/api/v2/move/${name}`)
                 .then((response) => response.json())
                 .then((d) => {
                     let effect_entry = d.effect_entries.find(e => e.language.name === "en");
-            
-                    setMoves(moves => moves.set(n, {
+
+                    setMoves(moves => moves.set(name, {
                         machines: d.machines,
                         type: d.type.name,
                         power: d.power,
@@ -37,7 +41,11 @@ export const PokemonMoveProvider = ({ children }) => {
                 .catch((err) => {
                     setErrors(e => [...e, err.message]);
                 });
+            resolve();
         });
+
+        Promise.all(names.filter(n => n && !moves.has(n)).map(name => fetchMove(name)))
+            .then(values => setLoading(false));
     }
 
     /**
@@ -51,7 +59,8 @@ export const PokemonMoveProvider = ({ children }) => {
 
     return (
         <PokemonMoveContext.Provider value={{ ...moves, fetchMoves, getMove }}>
-            {children}
+            {loading && <LoadingPokemonLogo />}
+            {!loading && children}
             {errors.map((e, i) => <p key={i}>{e}</p>)}
         </PokemonMoveContext.Provider>
     );
