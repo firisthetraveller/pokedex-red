@@ -26,14 +26,16 @@ const PokemonPage = () => {
     const { data: species, error: error_species } = useFetch(data ? data.species.url : "");
     const { capitalizeAllString } = useFormat();
     const { fetchMoves } = usePokemonMoves();
+    const [fetching, setFetching] = useState(false);
 
     const [selectedVersion, setSelectedVersion] = useState("red-blue");
 
     useEffect(() => {
-        if(data) {
+        if (data && !fetching) {
             fetchMoves(data.moves.map(m => m.move.name));
+            setFetching(true);
         }
-    }, [data, fetchMoves]);
+    }, [data, fetchMoves, fetching]);
 
     return (
         <div className="top-20 lg:mx-20 mx-8 mt-4 flex flex-col">
