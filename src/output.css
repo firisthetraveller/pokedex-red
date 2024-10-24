@@ -607,8 +607,8 @@ video {
   margin-left: 3.5rem;
 }
 
-.ml-2 {
-  margin-left: 0.5rem;
+.ml-6 {
+  margin-left: 1.5rem;
 }
 
 .mt-2 {
@@ -877,16 +877,8 @@ video {
   padding-left: 0.5rem;
 }
 
-.pl-4 {
-  padding-left: 1rem;
-}
-
 .pr-1\.5 {
   padding-right: 0.375rem;
-}
-
-.pt-4 {
-  padding-top: 1rem;
 }
 
 .text-center {
@@ -961,6 +953,12 @@ video {
 @media not all and (min-width: 768px) {
   .max-md\:self-center {
     align-self: center;
+  }
+}
+
+@media (min-width: 640px) {
+  .sm\:ml-2 {
+    margin-left: 0.5rem;
   }
 }
 
