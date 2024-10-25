@@ -1013,6 +1013,18 @@ video {
   .sm\:ml-2 {
     margin-left: 0.5rem;
   }
+
+  .sm\:px-10 {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:px-12 {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -1024,10 +1036,5 @@ video {
   .lg\:size-32 {
     width: 8rem;
     height: 8rem;
-  }
-
-  .lg\:px-12 {
-    padding-left: 3rem;
-    padding-right: 3rem;
   }
 }
