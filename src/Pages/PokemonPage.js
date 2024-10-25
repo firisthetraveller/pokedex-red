@@ -58,7 +58,7 @@ const PokemonPage = () => {
                         <EvolutionLine url={species.evolution_chain.url} />
                     </SectionWrapper>}
 
-                    {species.varieties && species.varieties.length > 1 && <SectionWrapper name="Variants" className="flex flew-wrap">
+                    {species.varieties && species.varieties.length > 1 && <SectionWrapper name="Variants" className="flex flex-wrap">
                         <VariantInfo data={species.varieties} name={data.name} />
                     </SectionWrapper>}
 
