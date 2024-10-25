@@ -14,7 +14,7 @@ const SectionWrapper = ({ children, name, className = "" }) => {
 
     return (
         <>
-            <div className={`px-2 mt-2`}>
+            <div className={`px-2 my-2`}>
                 <Heading level={level + 1} className="my-2">{name}</Heading>
                 {className
                     ? <div className={className}>

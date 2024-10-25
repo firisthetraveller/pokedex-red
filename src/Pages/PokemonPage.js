@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import useFormat from "../Hooks/useFormat";
 import useFetch from "../Hooks/useFetch";
 import { usePokemonIds, usePokemonMoves } from "../Hooks/usePokemonData";
+import useWindowDimensions from "../Hooks/useWindowDimensions";
 
 import StatInfo from "../Components/PokemonInfo/StatInfo";
 import TypeInfo from "../Components/PokemonInfo/TypeInfo";
@@ -25,6 +26,7 @@ const PokemonPage = () => {
     const { data, error: error_data } = useFetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
     const { data: species, error: error_species } = useFetch(data ? data.species.url : "");
     const { capitalizeAllString } = useFormat();
+    const { width } = useWindowDimensions();
     const { fetchMoves } = usePokemonMoves();
     const [fetching, setFetching] = useState(false);
 
@@ -37,34 +39,70 @@ const PokemonPage = () => {
         }
     }, [data, fetchMoves, fetching]);
 
+    const PokemonImage = () => (
+        <>
+            {data.sprites && <img src={getOfficialArtworkFromName(name)} alt={`Front of ${data.name}`} className="max-md:self-center max-w-64 max-h-64" />}
+        </>
+    );
+
+    const PokemonAbilities = () => (
+        <>
+            {data.abilities && <SectionWrapper name="Abilities" className="flex">
+                {data.abilities.map((a, i) => <AbilityInfo key={i} name={a.ability.name} hidden={a.is_hidden} />)}
+            </SectionWrapper>}
+        </>
+    )
+
+    const PokemonSpecies = () => (
+        <>
+            {data.types && <SectionWrapper name="Species data" className="flex text-center justify-center">
+                {data.types && <SectionWrapper name={`Type${data.types.length > 1 ? 's' : ''}`} className="text-center">
+                    {data.types.map((t, i) => <TypeInfo key={i} name={t.type.name} />)}
+                </SectionWrapper>}
+                {data.height && <BasicInfo name="Height" value={`${data.height / 10} m`} className="text-center" />}
+                {data.weight && <BasicInfo name="Weight" value={`${data.weight / 10} kg`} className="text-center" />}
+                {width >= 768 && <PokemonAbilities />}
+            </SectionWrapper>}
+        </>
+    )
+
+    const PokemonData = () => (
+        <>
+            <PokemonSpecies />
+
+            {
+                species.evolution_chain && <SectionWrapper name="Evolution" className="mt-4">
+                    <EvolutionLine url={species.evolution_chain.url} />
+                </SectionWrapper>
+            }
+        </>
+    )
+
     return (
         <div className="top-20 lg:mx-20 mx-8 mt-4 flex flex-col">
             {data && species &&
                 <>
                     <Heading level={2}>#{data.id} {capitalizeAllString(data.name)}</Heading>
                     {species.genera && species.genera.filter(g => g.language.name === 'en').map((g, i) => <Heading level={3} key={i} className="text-gray-600">{g.genus}</Heading>)}
-                    {data.sprites && <img src={getOfficialArtworkFromName(name)} alt={`Front of ${data.name}`} className="max-md:self-center max-w-64" />}
 
-
-                    {data.types && <SectionWrapper name="Species data" className="flex text-center">
-                        {data.types && <SectionWrapper name={`Type${data.types.length > 1 ? 's' : ''}`} className="text-center">
-                            {data.types.map((t, i) => <TypeInfo key={i} name={t.type.name} />)}
-                        </SectionWrapper>}
-                        {data.height && <BasicInfo name="Height" value={`${data.height / 10} m`} className="text-center" />}
-                        {data.weight && <BasicInfo name="Weight" value={`${data.weight / 10} kg`} className="text-center" />}
-                    </SectionWrapper>}
-
-                    {species.evolution_chain && <SectionWrapper name="Evolution">
-                        <EvolutionLine url={species.evolution_chain.url} />
-                    </SectionWrapper>}
+                    {width >= 768
+                        ? <div className="flex">
+                            <PokemonImage />
+                            <div className="ml-4">
+                                <PokemonData />
+                            </div>
+                        </div>
+                        : <>
+                            <PokemonImage />
+                            <PokemonData />
+                        </>
+                    }
 
                     {species.varieties && species.varieties.length > 1 && <SectionWrapper name="Variants" className="flex flex-wrap">
                         <VariantInfo data={species.varieties} name={data.name} />
                     </SectionWrapper>}
 
-                    {data.abilities && <SectionWrapper name="Abilities" className="flex">
-                        {data.abilities.map((a, i) => <AbilityInfo key={i} name={a.ability.name} hidden={a.is_hidden} />)}
-                    </SectionWrapper>}
+                    {width < 768 && <PokemonAbilities />}
 
                     {species && <SectionWrapper name="Game selector">
                         <GameSelector species={species} version={selectedVersion} setSelectedVersion={setSelectedVersion} />
