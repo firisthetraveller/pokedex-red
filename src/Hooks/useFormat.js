@@ -35,6 +35,17 @@ const shorthandString = (str) => {
     return undefined;
 }
 
+/**
+ * Converts a given string to kebab case: all lowercase letters and all words are joined by a dash (`-`).
+ * @param {string} str 
+ * @returns str in kebab case.
+ */
+const kebabCase = (str) => {
+    if (str) {
+        return str.toLowerCase().replace(' ', '-');
+    }
+}
+
 export default function useFormat() {
-    return { capitalize, capitalizeAllString, shorthandString };
+    return { capitalize, capitalizeAllString, shorthandString, kebabCase };
 }
