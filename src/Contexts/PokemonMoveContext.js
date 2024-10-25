@@ -23,24 +23,26 @@ export const PokemonMoveProvider = ({ children }) => {
         setLoading(true);
 
         const fetchMove = (name) => new Promise(resolve => {
-            fetch(`https://pokeapi.co/api/v2/move/${name}`)
-                .then((response) => response.json())
-                .then((d) => {
-                    let effect_entry = d.effect_entries.find(e => e.language.name === "en");
+            if (!moves.has(name)) {
+                fetch(`https://pokeapi.co/api/v2/move/${name}`)
+                    .then((response) => response.json())
+                    .then((d) => {
+                        let effect_entry = d.effect_entries.find(e => e.language.name === "en");
 
-                    setMoves(moves => moves.set(name, {
-                        machines: d.machines,
-                        type: d.type.name,
-                        power: d.power,
-                        pp: d.pp,
-                        damage_class: d.damage_class.name,
-                        accuracy: d.accuracy,
-                        effect: effect_entry ? (effect_entry.short_effect ? effect_entry.short_effect : effect_entry.effect) : "-"
-                    }));
-                })
-                .catch((err) => {
-                    setErrors(e => [...e, err.message]);
-                });
+                        setMoves(moves => new Map(moves.set(name, {
+                            machines: d.machines,
+                            type: d.type.name,
+                            power: d.power,
+                            pp: d.pp,
+                            damage_class: d.damage_class.name,
+                            accuracy: d.accuracy,
+                            effect: effect_entry ? (effect_entry.short_effect ? effect_entry.short_effect : effect_entry.effect) : "-"
+                        })));
+                    })
+                    .catch((err) => {
+                        setErrors(e => [...e, err.message]);
+                    });
+            }
             resolve();
         });
 
@@ -59,7 +61,6 @@ export const PokemonMoveProvider = ({ children }) => {
 
     return (
         <PokemonMoveContext.Provider value={{ ...moves, fetchMoves, getMove }}>
-            {loading && <LoadingPokemonLogo />}
             {!loading && children}
             {errors.map((e, i) => <p key={i}>{e}</p>)}
         </PokemonMoveContext.Provider>
