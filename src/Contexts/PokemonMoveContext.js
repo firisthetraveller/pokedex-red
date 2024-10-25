@@ -61,7 +61,8 @@ export const PokemonMoveProvider = ({ children }) => {
 
     return (
         <PokemonMoveContext.Provider value={{ ...moves, fetchMoves, getMove }}>
-            {!loading && children}
+            {loading && <LoadingPokemonLogo />}
+            {children}
             {errors.map((e, i) => <p key={i}>{e}</p>)}
         </PokemonMoveContext.Provider>
     );
