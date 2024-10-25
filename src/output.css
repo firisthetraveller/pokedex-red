@@ -647,6 +647,11 @@ video {
   display: none;
 }
 
+.size-24 {
+  width: 6rem;
+  height: 6rem;
+}
+
 .size-32 {
   width: 8rem;
   height: 8rem;
@@ -1016,12 +1021,9 @@ video {
     margin-right: 5rem;
   }
 
-  .lg\:h-40 {
-    height: 10rem;
-  }
-
-  .lg\:w-40 {
-    width: 10rem;
+  .lg\:size-32 {
+    width: 8rem;
+    height: 8rem;
   }
 
   .lg\:px-12 {

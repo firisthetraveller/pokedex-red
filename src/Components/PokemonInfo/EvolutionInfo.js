@@ -45,7 +45,7 @@ const EvolutionInfo = ({ data }) => {
                     }
                     <div className="text-center">
                         <Link to={`/pokemon/${data.species.name}`}>
-                            <img src={getImageFromName(data.species.name)} className="lg:h-40 lg:w-40" alt={`Sprite of ${data.species.name}`} />
+                            <img src={getImageFromName(data.species.name)} className="size-24 lg:size-32" alt={`Sprite of ${data.species.name}`} />
                             <span className="font-normal">{capitalizeAllString(data.species.name)}</span>
                         </Link>
                     </div>
