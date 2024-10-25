@@ -45,6 +45,14 @@ const PokemonPage = () => {
         </>
     );
 
+    const PokemonNameplate = () => (
+        <div>
+            <Heading level={2}>#{data.id} {capitalizeAllString(data.name)}</Heading>
+            {species.genera && species.genera.filter(g => g.language.name === 'en').map((g, i) => <Heading level={3} key={i} className="text-gray-600">{g.genus}</Heading>)}
+            <PokemonImage />
+        </div>
+    )
+
     const PokemonAbilities = () => (
         <>
             {data.abilities && <SectionWrapper name="Abilities" className="flex">
@@ -82,18 +90,15 @@ const PokemonPage = () => {
         <div className="top-20 lg:mx-20 mx-8 mt-4 flex flex-col">
             {data && species &&
                 <>
-                    <Heading level={2}>#{data.id} {capitalizeAllString(data.name)}</Heading>
-                    {species.genera && species.genera.filter(g => g.language.name === 'en').map((g, i) => <Heading level={3} key={i} className="text-gray-600">{g.genus}</Heading>)}
-
                     {width >= 768
                         ? <div className="flex">
-                            <PokemonImage />
+                            <PokemonNameplate />
                             <div className="ml-4">
                                 <PokemonData />
                             </div>
                         </div>
                         : <>
-                            <PokemonImage />
+                            <PokemonNameplate />
                             <PokemonData />
                         </>
                     }
