@@ -615,6 +615,10 @@ video {
   margin-left: 3.5rem;
 }
 
+.ml-4 {
+  margin-left: 1rem;
+}
+
 .ml-6 {
   margin-left: 1.5rem;
 }
@@ -625,10 +629,6 @@ video {
 
 .mt-4 {
   margin-top: 1rem;
-}
-
-.ml-4 {
-  margin-left: 1rem;
 }
 
 .inline {
@@ -728,8 +728,8 @@ video {
   justify-content: center;
 }
 
-.overflow-x-scroll {
-  overflow-x: scroll;
+.overflow-x-auto {
+  overflow-x: auto;
 }
 
 .overflow-y-scroll {

@@ -20,9 +20,9 @@ const EvolutionInfo = ({ data }) => {
                 : <>
                     {data.evolution_details && data.evolution_details.length > 0 &&
                         <div className="text-center flex items-center">
-                            {data.evolution_details.map((d, i) =>
-                                <React.Fragment key={i}>
-                                    <div className="flex flex-col items-center text-sm">
+                            <div className="flex flex-col items-center text-sm">
+                                {data.evolution_details.map((d, i) =>
+                                    <React.Fragment key={i}>
                                         {d.min_level && <span>Lvl. {data.evolution_details[0].min_level}</span>}
                                         {d.min_happiness &&
                                             <span>Happy{d.time_of_day ? ` at ${d.time_of_day}` : ""}{d.known_move_type ? <span> with a {<TypeInfo name={d.known_move_type.name} />} move</span> : ""}</span>}
@@ -37,10 +37,10 @@ const EvolutionInfo = ({ data }) => {
                                         {d.location && <>
                                             <span>Level up at {capitalizeAllString(d.location.name)}</span>
                                         </>}
-                                    </div>
-                                </React.Fragment>
-                            )}
-                            <FontAwesomeIcon icon={faArrowRight} size="2xl" className="ml-4"/>
+                                    </React.Fragment>
+                                )}
+                            </div>
+                            <FontAwesomeIcon icon={faArrowRight} size="2xl" className="ml-4" />
                         </div>
                     }
                     <div className="text-center">

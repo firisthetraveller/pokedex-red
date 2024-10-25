@@ -5,7 +5,7 @@ const EvolutionLine = ({ url }) => {
     const { data, error } = useFetch(url);
 
     return (
-        <div className="flex items-center my-2 max-md:self-center overflow-x-scroll">
+        <div className="flex items-center m-2 max-md:self-center overflow-x-auto">
             {data && data.chain && <EvolutionInfo data={data.chain} />}
             {error && <p>{error.message}</p>}
         </div>
