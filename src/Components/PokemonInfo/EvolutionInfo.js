@@ -19,8 +19,7 @@ const EvolutionInfo = ({ data }) => {
                 ? <p>This Pokémon does not evolve.</p>
                 : <>
                     {data.evolution_details && data.evolution_details.length > 0 &&
-                        <div className="text-center">
-                            <FontAwesomeIcon icon={faArrowRight} size="2xl" />
+                        <div className="text-center flex items-center">
                             {data.evolution_details.map((d, i) =>
                                 <React.Fragment key={i}>
                                     <div className="flex flex-col items-center text-sm">
@@ -41,6 +40,7 @@ const EvolutionInfo = ({ data }) => {
                                     </div>
                                 </React.Fragment>
                             )}
+                            <FontAwesomeIcon icon={faArrowRight} size="2xl" className="ml-4"/>
                         </div>
                     }
                     <div className="text-center">
