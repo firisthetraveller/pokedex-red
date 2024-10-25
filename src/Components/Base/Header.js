@@ -10,11 +10,13 @@ const Header = () => {
     const { width } = useWindowDimensions();
 
     return (
-        <div className="fixed flex items-center h-24 lg:px-12 bg-gradient-to-b from-white from-75% z-10 w-full">
+        <div className="fixed pt-4 h-24 lg:px-12 bg-gradient-to-b from-white from-75% z-10 w-full">
+            <div className="flex items-center">
             <Link to="/home" className="flex items-center">
                 {width >= 640 && <PokemonLogo />}<Heading level={1} className="ml-6 sm:ml-2">Pokédex</Heading>
             </Link>
             <SearchBar className="mx-5"/>
+            </div>
         </div>
     );
 }
