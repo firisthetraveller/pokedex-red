@@ -86,7 +86,9 @@ const SearchBar = ({ className }) => {
             {/** Autocomplete */}
             {suggestions &&
                 <div className="absolute ml-10 shadow-md" ref={suggestionsRef}>
-                    {suggestions.map((s, i) => <div key={i} className={`${i === activeSuggestionIndex ? 'bg-gray-200' : 'bg-white'} p-2 border border-gray-500`}>
+                    {suggestions.map((s, i) => <div key={i}
+                        className={`${i === activeSuggestionIndex ? 'bg-white' : 'bg-gray-200'} hover:bg-white p-2`}
+                        onMouseEnter={() => setActiveSuggestionIndex(i)}>
                         <Link to={`/pokemon/${s}`} onClick={clean}>{getId(s) < 10000 ? `#${getId(s)}` : ""} <span className="font-normal">{capitalizeAllString(s)}</span></Link>
                     </div>)}
                 </div>
