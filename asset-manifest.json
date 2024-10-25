@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/pokedex-red/static/css/main.caf531bb.css",
-    "main.js": "/pokedex-red/static/js/main.ca6d359a.js",
+    "main.css": "/pokedex-red/static/css/main.cde1d381.css",
+    "main.js": "/pokedex-red/static/js/main.2c150a09.js",
     "static/media/Monocraft-Italic.ttf": "/pokedex-red/static/media/Monocraft-Italic.7ff4b45155130fae8685.ttf",
     "static/media/Monocraft-Bold.ttf": "/pokedex-red/static/media/Monocraft-Bold.f212b449da569a492654.ttf",
     "static/media/Monocraft.ttf": "/pokedex-red/static/media/Monocraft.4d8259b4003982f2210e.ttf",
     "index.html": "/pokedex-red/index.html",
-    "main.caf531bb.css.map": "/pokedex-red/static/css/main.caf531bb.css.map",
-    "main.ca6d359a.js.map": "/pokedex-red/static/js/main.ca6d359a.js.map"
+    "main.cde1d381.css.map": "/pokedex-red/static/css/main.cde1d381.css.map",
+    "main.2c150a09.js.map": "/pokedex-red/static/js/main.2c150a09.js.map"
   },
   "entrypoints": [
-    "static/css/main.caf531bb.css",
-    "static/js/main.ca6d359a.js"
+    "static/css/main.cde1d381.css",
+    "static/js/main.2c150a09.js"
   ]
 }
