@@ -6,20 +6,21 @@ const LevelContext = createContext(1);
 const SectionWrapper = ({ children, name, className = "" }) => {
     const level = useContext(LevelContext);
 
+    const subSections = (
+        <LevelContext.Provider value={level + 1}>
+            {children}
+        </LevelContext.Provider>
+    );
+
     return (
         <>
-
             <div className={`px-2 mt-2`}>
                 <Heading level={level + 1} className="my-2">{name}</Heading>
                 {className
                     ? <div className={className}>
-                        <LevelContext.Provider value={level + 1}>
-                            {children}
-                        </LevelContext.Provider>
+                        {subSections}
                     </div>
-                    : <LevelContext.Provider value={level + 1}>
-                        {children}
-                    </LevelContext.Provider>
+                    : subSections
                 }
             </div>
         </>
