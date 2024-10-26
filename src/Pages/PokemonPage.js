@@ -25,6 +25,7 @@ const PokemonPage = () => {
 
     const { data, error: error_data } = useFetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
     const { data: species, error: error_species } = useFetch(data ? data.species.url : "");
+    const { data: evolutionData, error: error_evolution } = useFetch(species ? species.evolution_chain.url : "");
     const { capitalizeAllString } = useFormat();
     const { width } = useWindowDimensions();
     const { fetchMoves } = usePokemonMoves();
@@ -74,13 +75,28 @@ const PokemonPage = () => {
         </>
     )
 
+    const PokemonEvolution = () => (
+        <>
+            {
+                species.evolution_chain && <SectionWrapper name="Evolution" className="mt-4">
+                    <EvolutionLine data={evolutionData} />
+                </SectionWrapper>
+            }
+        </>
+    );
+
     const PokemonData = () => (
         <>
             <PokemonSpecies />
+            <PokemonEvolution />
+        </>
+    );
 
+    const PokemonVariants = () => (
+        <>
             {
-                species.evolution_chain && <SectionWrapper name="Evolution" className="mt-4">
-                    <EvolutionLine url={species.evolution_chain.url} />
+                species.varieties && species.varieties.length > 1 && <SectionWrapper name="Variants" className="flex flex-wrap">
+                    <VariantInfo data={species.varieties} name={data.name} />
                 </SectionWrapper>
             }
         </>
@@ -91,15 +107,20 @@ const PokemonPage = () => {
             {data && species &&
                 <>
                     {width >= 768
-                        ? <div className="flex">
-                            <PokemonNameplate />
-                            <div className="ml-4">
-                                <PokemonData />
+                        ? <>
+                            <div className="flex">
+                                <PokemonNameplate />
+                                <div className="ml-4">
+                                    <PokemonData />
+                                </div>
                             </div>
-                        </div>
+                            <PokemonVariants />
+                        </>
                         : <>
                             <PokemonNameplate />
                             <PokemonData />
+                            <PokemonVariants />
+                            <PokemonAbilities />
                         </>
                     }
 
