@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Link } from "react-router-dom";
 
 import useFormat from "../../Hooks/useFormat";
@@ -8,6 +7,10 @@ import { usePokemonIds } from "../../Hooks/usePokemonData";
 import TypeInfo from "./TypeInfo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+
+const MemoImage = React.memo(({ src, name }) => (
+    <img src={src} className="size-24 lg:size-32" alt={`Sprite of ${name}`} />
+));
 
 const EvolutionInfo = ({ data }) => {
     const { getImageFromName, get3DVisualFromName } = usePokemonIds();
@@ -45,7 +48,7 @@ const EvolutionInfo = ({ data }) => {
                     }
                     <div className="text-center">
                         <Link to={`/pokemon/${data.species.name}`}>
-                            <img src={getImageFromName(data.species.name)} className="size-24 lg:size-32" alt={`Sprite of ${data.species.name}`} />
+                            <MemoImage src={getImageFromName(data.species.name)} name={data.species.name} />
                             <span className="font-normal">{capitalizeAllString(data.species.name)}</span>
                         </Link>
                     </div>
@@ -67,6 +70,6 @@ const EvolutionInfo = ({ data }) => {
             }
         </>
     );
-}
+};
 
 export default EvolutionInfo;

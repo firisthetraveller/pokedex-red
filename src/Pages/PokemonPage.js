@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import useFormat from "../Hooks/useFormat";
@@ -39,11 +39,11 @@ const PokemonPage = () => {
         }
     }, [data, fetchMoves, fetching]);
 
-    const PokemonImage = () => (
+    const PokemonImage = React.memo(() => (
         <>
             {data.sprites && <img src={getOfficialArtworkFromName(name)} alt={`Front of ${data.name}`} className="max-md:self-center max-w-64 max-h-64" />}
         </>
-    );
+    ));
 
     const PokemonNameplate = () => (
         <div>
@@ -103,12 +103,6 @@ const PokemonPage = () => {
                         </>
                     }
 
-                    {species.varieties && species.varieties.length > 1 && <SectionWrapper name="Variants" className="flex flex-wrap">
-                        <VariantInfo data={species.varieties} name={data.name} />
-                    </SectionWrapper>}
-
-                    {width < 768 && <PokemonAbilities />}
-
                     {species && <SectionWrapper name="Game selector">
                         <GameSelector species={species} version={selectedVersion} setSelectedVersion={setSelectedVersion} />
                     </SectionWrapper>}
@@ -128,6 +122,7 @@ const PokemonPage = () => {
             }
             {error_data && <p>{error_data}</p>}
             {error_species && <p>{error_species}</p>}
+            {error_evolution && <p>{error_evolution}</p>}
         </div >
     );
 }
