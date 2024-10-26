@@ -13,28 +13,31 @@ import PokemonPage from './Pages/PokemonPage';
 
 import './App.css';
 import './output.css';
+import { PokemonTypeProvider } from './Contexts/PokemonTypeContext';
 
 function App() {
   return (
     <>
       <PokemonIdProvider>
-        <PokemonGenerationProvider>
-          <PokemonMoveProvider>
-            <BrowserRouter basename='/pokedex-red'>
-              <Header />
-              <div className='min-h-16' />
-              <div>
-                <Routes>
-                  <Route index element={<Navigate to="/home/0/40" replace />} />
-                  <Route path="home/:offset/:limit" element={<Home />} />
-                  <Route path="pokemon/:name" element={<PokemonPage />} />
-                  <Route path="*" element={<Navigate to="/home/0/40" />} />
-                </Routes>
-              </div>
-              <Footer />
-            </BrowserRouter>
-          </PokemonMoveProvider>
-        </PokemonGenerationProvider>
+        <PokemonTypeProvider>
+          <PokemonGenerationProvider>
+            <PokemonMoveProvider>
+              <BrowserRouter basename='/pokedex-red'>
+                <Header />
+                <div className='min-h-16' />
+                <div>
+                  <Routes>
+                    <Route index element={<Navigate to="/home/0/40" replace />} />
+                    <Route path="home/:offset/:limit" element={<Home />} />
+                    <Route path="pokemon/:name" element={<PokemonPage />} />
+                    <Route path="*" element={<Navigate to="/home/0/40" />} />
+                  </Routes>
+                </div>
+                <Footer />
+              </BrowserRouter>
+            </PokemonMoveProvider>
+          </PokemonGenerationProvider>
+        </PokemonTypeProvider>
       </PokemonIdProvider>
     </>
   );

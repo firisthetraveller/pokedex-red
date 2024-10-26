@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { PokemonIdContext } from "../Contexts/PokemonIdContext";
 import { PokemonGenerationContext } from "../Contexts/PokemonGenerationContext";
 import { PokemonMoveContext } from "../Contexts/PokemonMoveContext";
+import { PokemonTypeContext } from "../Contexts/PokemonTypeContext";
 
 const usePokemonData = (contextName, error) => {
     const context = useContext(contextName);
@@ -16,3 +17,4 @@ const usePokemonData = (contextName, error) => {
 export const usePokemonIds = () => usePokemonData(PokemonIdContext, "usePokemonIds should be used inside a PokemonIdProvider.");
 export const usePokemonGenerations = () => usePokemonData(PokemonGenerationContext, "usePokemonGenerations should be used inside a PokemonGenerationProvider.");
 export const usePokemonMoves = () => usePokemonData(PokemonMoveContext, "usePokemonGenerations should be used inside a PokemonGenerationProvider.");
+export const usePokemonTypes = () => usePokemonData(PokemonTypeContext, "usePokemonTypes should be used inside a PokemonTypeProvider.")

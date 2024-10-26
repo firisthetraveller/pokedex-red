@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 import useFormat from "../Hooks/useFormat";
 import useFetch from "../Hooks/useFetch";
-import { usePokemonIds, usePokemonMoves } from "../Hooks/usePokemonData";
+import { usePokemonIds, usePokemonMoves, usePokemonTypes } from "../Hooks/usePokemonData";
 import useWindowDimensions from "../Hooks/useWindowDimensions";
 
 import StatInfo from "../Components/PokemonInfo/StatInfo";
@@ -18,7 +18,6 @@ import VariantInfo from "../Components/PokemonInfo/VariantInfo";
 import PokedexFlavorText from "../Components/PokemonInfo/PokedexFlavorText";
 import GameSelector from "../Components/PokemonInfo/GameSelector";
 
-
 const PokemonPage = () => {
     const { name } = useParams();
     const { getOfficialArtworkFromName } = usePokemonIds();
@@ -29,6 +28,7 @@ const PokemonPage = () => {
     const { capitalizeAllString } = useFormat();
     const { width } = useWindowDimensions();
     const { fetchMoves } = usePokemonMoves();
+    const { getWeaknesses } = usePokemonTypes();
     const [fetching, setFetching] = useState(false);
 
     const [selectedVersion, setSelectedVersion] = useState("red-blue");
@@ -101,6 +101,10 @@ const PokemonPage = () => {
             }
         </>
     )
+
+    if (data.types) {
+        console.log("Weaknesses", getWeaknesses(data.types.map(t => t.type.name)));
+    }
 
     return (
         <div className="top-20 lg:mx-20 mx-8 mt-4 flex flex-col">
