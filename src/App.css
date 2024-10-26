@@ -41,6 +41,10 @@ body {
   flex: 2 1 0%;
 }
 
+.vertical-writing {
+  writing-mode: vertical-rl;
+}
+
 @media (min-width: 1024px) {  
   .lg\:flex-3 {
     flex: 3 1 0%;

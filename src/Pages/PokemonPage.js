@@ -17,6 +17,7 @@ import BasicInfo from "../Components/PokemonInfo/BasicInfo";
 import VariantInfo from "../Components/PokemonInfo/VariantInfo";
 import PokedexFlavorText from "../Components/PokemonInfo/PokedexFlavorText";
 import GameSelector from "../Components/PokemonInfo/GameSelector";
+import WeaknessInfo from "../Components/PokemonInfo/WeaknessInfo";
 
 const PokemonPage = () => {
     const { name } = useParams();
@@ -127,6 +128,10 @@ const PokemonPage = () => {
                             <PokemonAbilities />
                         </>
                     }
+
+                    {data.types && <SectionWrapper name="Weaknesses">
+                        <WeaknessInfo weaknesses={getWeaknesses(data.types.map(t => t.type.name))} />
+                    </SectionWrapper>}
 
                     {species && <SectionWrapper name="Game selector">
                         <GameSelector species={species} version={selectedVersion} setSelectedVersion={setSelectedVersion} />

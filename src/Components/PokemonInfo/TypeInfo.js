@@ -1,6 +1,7 @@
 import useFormat from "../../Hooks/useFormat";
 
-const commonStyle = "rounded p-1 pr-1.5 text-white type-shadow m-1";
+const commonStyle = "rounded text-white type-shadow";
+const defaultStyle = "p-1 pr-1.5 m-1";
 
 const getTypeColorStyle = (name) => {
     switch (name) {
@@ -26,10 +27,10 @@ const getTypeColorStyle = (name) => {
     }
 }
  
-const TypeInfo = ({ name }) => {
+const TypeInfo = ({ name, className = defaultStyle }) => {
     const { capitalize } = useFormat();
 
-    return <span className={`${commonStyle} ${getTypeColorStyle(name)} font-semibold`}>{capitalize(name)}</span>
+    return <span className={`${className} ${commonStyle} ${getTypeColorStyle(name)} font-semibold`}>{capitalize(name)}</span>
 }
 
 export default TypeInfo;

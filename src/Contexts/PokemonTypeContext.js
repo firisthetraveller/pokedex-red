@@ -2,16 +2,6 @@ import { createContext, useEffect, useState } from "react";
 
 export const PokemonTypeContext = createContext(null);
 
-
-const weaknessTranslator = (value) => {
-    switch (value) {
-        case -1: return "Immune";
-        case 0: return "x1/4";
-        case 1: case 2: case 3: case 4: return `x${1 / 4 * Math.pow(2, value)}`;
-        default: throw new Error(`No such damage value: ${value}`);
-    }
-}
-
 export const PokemonTypeProvider = ({ children }) => {
     const [types, setTypes] = useState(new Map());
     const [errors, setErrors] = useState([]);
@@ -48,7 +38,7 @@ export const PokemonTypeProvider = ({ children }) => {
      * @param {string[]} names 
      */
     const getWeaknessMap = (names) => {
-        const weaknesses = new Map([...types.keys()].map(t => [t, {name: t, value: 2}]));
+        const weaknesses = new Map([...types.keys()].map(t => [t, { name: t, value: 2 }]));
 
         names.forEach(t => {
             const relations = types.get(t);
@@ -57,18 +47,18 @@ export const PokemonTypeProvider = ({ children }) => {
                 let value = weaknesses.get(t).value;
                 if (value === -1)
                     return;
-                weaknesses.set(t, {name: t, value: value + 1});
+                weaknesses.set(t, { name: t, value: value + 1 });
             });
 
             relations.half.forEach(t => {
                 let value = weaknesses.get(t).value;
                 if (value === -1)
                     return;
-                weaknesses.set(t, {name: t, value: value - 1});
+                weaknesses.set(t, { name: t, value: value - 1 });
             });
 
             relations.immune.forEach(t => {
-                weaknesses.set(t, {name: t, value: - 1});
+                weaknesses.set(t, { name: t, value: - 1 });
             });
         });
 
@@ -76,7 +66,8 @@ export const PokemonTypeProvider = ({ children }) => {
     }
 
     const getWeaknesses = (names) => {
-        return [...getWeaknessMap(names).values()].filter(info => !["unknown", "shadow", "stellar"].includes(info.name)).map(i => {return {...i, value: weaknessTranslator(i.value)}});
+        return [...getWeaknessMap(names).values()]
+            .filter(info => !["unknown", "shadow", "stellar"].includes(info.name));
     }
 
     return (
